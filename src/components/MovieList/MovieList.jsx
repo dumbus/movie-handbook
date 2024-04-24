@@ -4,6 +4,13 @@ import './MovieList.scss';
 
 import poster from '../../assets/404-poster.webp';
 
+// import MovieService from './services/MovieService';
+
+// const movieService = new MovieService();
+
+// movieService.getMovies().then(res => console.log(res));
+// movieService.getMovieById(1201206).then(res => console.log(res));
+
 const MovieList = () => {
   return (
     <>
