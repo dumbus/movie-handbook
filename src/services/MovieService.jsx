@@ -19,12 +19,39 @@ class MovieService {
     return await response.json();
   }
 
-  getMovies = () => {
-    return this.getResource(`${this._apiBaseUrl}/films`);
+  getMovies = async () => {
+    const result = await this.getResource(`${this._apiBaseUrl}/films`);
+
+    return result.items.map(item => this._transformMovie(item));
   }
 
-  getMovieById = (id) => {
-    return this.getResource(`${this._apiBaseUrl}/films/${id}`);
+  getMovieById = async (id) => {
+    const result = await this.getResource(`${this._apiBaseUrl}/films/${id}`);
+
+    return this._transformMovieFull(result);
+  }
+
+  _transformMovie = (movie) => {
+    return {
+      kinopoiskId: movie.kinopoiskId,
+      name: movie.nameRu || movie.nameOriginal,
+      year: movie.year,
+      posterUrl: movie.posterUrl || './assets/404-poster.webp',
+      countries: movie.countries
+    }
+  }
+
+  _transformMovieFull = (movieFull) => {
+    return {
+      kinopoiskId: movieFull.kinopoiskId,
+      name: movieFull.nameRu || movieFull.nameOriginal,
+      description: movieFull.shortDescription || 'NO DESCRIPTION',
+      coverUrl: movieFull.coverUrl || './assets/404-cover.jpg',
+      filmLength: movieFull.filmLength,
+      year: movieFull.year,
+      genres: movieFull.genres,
+      countries: movieFull.countries
+    }
   }
 
   // ================== For TMDB API ==================
