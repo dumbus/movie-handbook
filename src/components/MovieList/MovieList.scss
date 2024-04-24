@@ -34,7 +34,7 @@
       padding: 0.5rem;
     }
 
-    &_imdb {
+    &_rating {
       align-self: center;
       font-size: 2rem;
       font-weight: 700;
@@ -56,6 +56,7 @@
 @media (max-width: 767.98px) {
   .movie-list__list {
     grid-template-columns: repeat(2, 1fr);
+
   }
 
   .movie-list__item_image {

@@ -20,7 +20,7 @@ class MovieService {
   }
 
   getMovies = async () => {
-    const result = await this.getResource(`${this._apiBaseUrl}/films`);
+    const result = await this.getResource(`${this._apiBaseUrl}/films?type=FILM`);
 
     return result.items.map(item => this._transformMovie(item));
   }
@@ -37,8 +37,8 @@ class MovieService {
       name: movie.nameRu || movie.nameOriginal,
       year: movie.year,
       posterUrl: movie.posterUrl || './assets/404-poster.webp',
-      countries: movie.countries,
-      ratingImdb: movie.ratingImdb
+      countries: movie.countries.map((obj) => obj.country).join(', '),
+      rating: movie.ratingKinopoisk
     }
   }
 
