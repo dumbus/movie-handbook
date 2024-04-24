@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+
+.movie-list {
+  &__title {
+    padding: 2rem 0;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+
+    &_image {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+    }
+
+    &_text {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      gap: 1rem;
+      padding: 0.5rem;
+    }
+
+    &_imdb {
+      align-self: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: $primary;
+    } 
+
+    &_name {
+      font-weight: 700;
+    }
+  }
+}

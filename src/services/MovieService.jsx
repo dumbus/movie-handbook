@@ -37,7 +37,8 @@ class MovieService {
       name: movie.nameRu || movie.nameOriginal,
       year: movie.year,
       posterUrl: movie.posterUrl || './assets/404-poster.webp',
-      countries: movie.countries
+      countries: movie.countries,
+      ratingImdb: movie.ratingImdb
     }
   }
 
@@ -50,7 +51,8 @@ class MovieService {
       filmLength: movieFull.filmLength,
       year: movieFull.year,
       genres: movieFull.genres,
-      countries: movieFull.countries
+      countries: movieFull.countries,
+      ratingImdb: movieFull.ratingImdb
     }
   }
 

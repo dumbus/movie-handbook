@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+
+import MovieList from './components/MovieList/MovieList';
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <MovieList />
+    </>
   )
 }
 
-export default App
+export default App;
