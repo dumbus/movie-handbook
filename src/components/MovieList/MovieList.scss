@@ -1,8 +1,13 @@
 @import '../../styles/variables.scss';
 
 .movie-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 1rem;
+
   &__title {
-    padding: 1rem 0;
     font-size: 2rem;
     text-align: center;
   }

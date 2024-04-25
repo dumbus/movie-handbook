@@ -11,7 +11,8 @@ const Paginator = ({ page, isLoading, switchPage }) => {
         {'<'}
       </button>
 
-      <div className='paginator__page'>{`Текущая страница: ${page}`}</div>
+      <div className='paginator__page paginator__page_wide'>{`Текущая страница: ${page}`}</div>
+      <div className='paginator__page paginator__page_tight'>{`Страница: ${page}`}</div>
 
       <button
         className='paginator__button'

@@ -49,5 +49,19 @@
     background-color: $white;
     font-weight: 700;
     color: #000000;
+
+    &_tight {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .paginator__page_wide {
+    display: none;
+  }
+
+  .paginator__page_tight {
+    display: flex;
   }
 }
