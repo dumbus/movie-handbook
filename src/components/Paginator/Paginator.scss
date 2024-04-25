@@ -27,19 +27,14 @@
     transition: 0.2s all ease;
 
     &:hover {
-      background-color: $primary-dark;
-      outline: 2px solid $primary-dark;
+      background-color: $primary;
+      outline: 2px solid $primary;
     }
 
     &:disabled {
       opacity: 0.5;
       outline: 2px solid transparent;
       background-color: $white;
-    }
-
-    &.active {
-      background-color: $primary;
-      outline: 2px solid $primary;
     }
   }
 

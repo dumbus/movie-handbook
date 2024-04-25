@@ -1,42 +1,6 @@
-// import { useState} from 'react';
-
 import './Paginator.scss';
 
 const Paginator = ({ page, isLoading, switchPage }) => {
-  // const [currentPage, setCurrentPage] = useState(page);
-
-  // const switchPage = (offset) => {
-  //   setCurrentPage(currentPage => currentPage + offset);
-  //   setPage(page => page + offset);
-  // };
-
-  // const renderButtonstList = () => {
-  //   const buttons = [];
-
-  //   for (let i = activePage; i < activePage + 5; i++) {
-  //     const listItem = (
-  //       <li className='paginator__list_item' key={i}>
-  //         <button
-  //           className={`paginator__button ${i === activePage ? 'active' : ''}`}
-  //           onClick={}
-  //         >
-  //           {`${i}`}
-  //         </button>
-  //       </li>
-  //     );
-
-  //     buttons.push(listItem);
-  //   }
-
-  //   return (
-  //     <ul className='paginator__list'>
-  //       {buttons}
-  //     </ul>
-  //   )
-  // };
-
-  // const buttonsList = renderButtonstList();
-
   return (
     <div className='paginator'>
       <button
@@ -47,7 +11,6 @@ const Paginator = ({ page, isLoading, switchPage }) => {
         {'<'}
       </button>
 
-      {/* {buttonsList} */}
       <div className='paginator__page'>{`Текущая страница: ${page}`}</div>
 
       <button
