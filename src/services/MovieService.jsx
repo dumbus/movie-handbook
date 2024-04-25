@@ -19,8 +19,8 @@ class MovieService {
     return await response.json();
   }
 
-  getMovies = async () => {
-    const result = await this.getResource(`${this._apiBaseUrl}/films?type=FILM`);
+  getMovies = async (page = 1) => {
+    const result = await this.getResource(`${this._apiBaseUrl}/films?type=FILM&page=${page}`);
 
     return result.items.map(item => this._transformMovie(item));
   }

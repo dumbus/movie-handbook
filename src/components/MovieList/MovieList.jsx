@@ -4,6 +4,7 @@ import './MovieList.scss';
 
 import MovieService from '../../services/MovieService';
 
+import Paginator from '../Paginator/Paginator';
 import Error from '../Error/Error';
 import Spinner from '../Spinner/Spinner';
 
@@ -11,15 +12,17 @@ const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
+  const [page, setPage] = useState(1);
 
   const movieService = new MovieService();
 
   useEffect(() => {
-    onRequest();
-  }, []);
+    console.log('request');
+    onRequest(page);
+  }, [page]);
 
-  const onRequest = () => {
-    movieService.getMovies()
+  const onRequest = (page) => {
+    movieService.getMovies(page)
       .then(onMoviesListLoaded)
       .catch(onError);
   };
@@ -65,7 +68,7 @@ const MovieList = () => {
       <ul className='movie-list__list'>
         {listItems}
       </ul>
-    )
+    );
   };
 
   const list = renderMovieList(movieList);
@@ -75,15 +78,15 @@ const MovieList = () => {
   const content = !(isLoading || hasError) ? list : null;
 
   return (
-    <>
-      <div className='movie-list container'>
-        <h2 className='movie-list__title'>Лучшие фильмы</h2>
+    <div className='movie-list container'>
+      <h2 className='movie-list__title'>Лучшие фильмы</h2>
 
-        {error}
-        {spinner}
-        {content}
-      </div>
-    </>
+      <Paginator page={page} setPage={setPage} />
+
+      {error}
+      {spinner}
+      {content}
+    </div>
   )
 }
 
