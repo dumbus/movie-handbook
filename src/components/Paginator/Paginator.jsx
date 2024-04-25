@@ -1,14 +1,14 @@
-import { useState} from 'react';
+// import { useState} from 'react';
 
 import './Paginator.scss';
 
-const Paginator = ({ page, setPage }) => {
-  const [currentPage, setCurrentPage] = useState(page);
+const Paginator = ({ page, isLoading, switchPage }) => {
+  // const [currentPage, setCurrentPage] = useState(page);
 
-  const switchPage = (offset) => {
-    setCurrentPage(currentPage => currentPage + offset);
-    setPage(page => page + offset);
-  };
+  // const switchPage = (offset) => {
+  //   setCurrentPage(currentPage => currentPage + offset);
+  //   setPage(page => page + offset);
+  // };
 
   // const renderButtonstList = () => {
   //   const buttons = [];
@@ -42,7 +42,7 @@ const Paginator = ({ page, setPage }) => {
       <button
         className='paginator__button'
         onClick={() => switchPage(-1)}
-        disabled={currentPage <= 1}
+        disabled={(page <= 1) || isLoading}
       >
         {'<'}
       </button>
@@ -53,7 +53,7 @@ const Paginator = ({ page, setPage }) => {
       <button
         className='paginator__button'
         onClick={() => switchPage(1)}
-        disabled={currentPage >= 5}
+        disabled={(page >= 5) || isLoading}
       >
         {'>'}
       </button>

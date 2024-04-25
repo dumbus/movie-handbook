@@ -17,9 +17,8 @@ const MovieList = () => {
   const movieService = new MovieService();
 
   useEffect(() => {
-    console.log('request');
     onRequest(page);
-  }, [page]);
+  }, []);
 
   const onRequest = (page) => {
     movieService.getMovies(page)
@@ -71,6 +70,12 @@ const MovieList = () => {
     );
   };
 
+  const switchPage = (offset) => {
+    setLoading(true);
+    setPage((page) => page + offset);
+    onRequest(page);
+  };
+
   const list = renderMovieList(movieList);
 
   const error = hasError ? <Error /> : null;
@@ -81,7 +86,11 @@ const MovieList = () => {
     <div className='movie-list container'>
       <h2 className='movie-list__title'>Лучшие фильмы</h2>
 
-      <Paginator page={page} setPage={setPage} />
+      <Paginator 
+        page={page}
+        isLoading={isLoading}
+        switchPage={switchPage}
+      />
 
       {error}
       {spinner}
