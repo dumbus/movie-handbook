@@ -71,6 +71,7 @@ const MovieList = () => {
   };
 
   const switchPage = (offset) => {
+    setError(false);
     setLoading(true);
     
     onRequest(page + offset);
@@ -93,8 +94,8 @@ const MovieList = () => {
         switchPage={switchPage}
       />
 
-      {error}
       {spinner}
+      {error}
       {content}
     </div>
   )
