@@ -86,7 +86,7 @@ const MovieList = () => {
 
   return (
     <div className='movie-list container'>
-      <h2 className='movie-list__title'>Лучшие фильмы</h2>
+      <h2 className='movie-list__title title'>Лучшие фильмы</h2>
 
       <Paginator 
         page={page}
