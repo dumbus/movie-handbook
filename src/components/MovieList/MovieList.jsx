@@ -21,7 +21,7 @@ const MovieList = () => {
   }, []);
 
   const onRequest = (page) => {
-movieService.getMovies(page)
+    movieService.getMovies(page)
       .then(onMoviesListLoaded)
       .catch(onError);
   };
@@ -50,14 +50,11 @@ movieService.getMovies(page)
       return (
         <li className='movie-list__item' key={id}>
           <img className='movie-list__item_image' src={posterUrl} alt='poster image' />
+          <div className='movie-list__item_rating'>{rating}</div>
 
-          <div className='movie-list__item_text'>
-            <div className='movie-list__item_rating'>{rating}</div>
-
-            <div className='movie-list__item_description'>
-              <div className='movie-list__item_name'>{`${name} (${year})`}</div>
-              <div className='movie-list__item_country'>{countries}</div>
-            </div>
+          <div className='movie-list__item_description'>
+            <div className='movie-list__item_name'>{`${name} (${year})`}</div>
+            <div className='movie-list__item_country'>{countries}</div>
           </div>
         </li>
       );
