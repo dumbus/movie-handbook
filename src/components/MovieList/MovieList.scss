@@ -16,7 +16,7 @@
   &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 2rem;
     list-style: none;
   }
 
@@ -71,6 +71,10 @@
 }
 
 @media (max-width: 576.98px) {
+  .movie-list__list {
+    gap: 1rem;
+  }
+
   .movie-list__item {
 
     &_rating {
