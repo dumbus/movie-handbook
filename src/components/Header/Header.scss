@@ -8,6 +8,7 @@
   justify-content: space-between;
   padding: 1.5rem;
   background-color: $primary-dark;
+  z-index: 10;
 
   &__logo {
     display: flex;
