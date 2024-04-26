@@ -21,7 +21,7 @@ const MovieList = () => {
   }, []);
 
   const onRequest = (page) => {
-    movieService.getMovies(page)
+movieService.getMovies(page)
       .then(onMoviesListLoaded)
       .catch(onError);
   };
@@ -31,7 +31,7 @@ const MovieList = () => {
     setLoading(false);
   };
 
-  const onError = () => {
+  const onError = (error) => {
     setError(true);
     setLoading(false);
   };
@@ -39,7 +39,7 @@ const MovieList = () => {
   const renderMovieList = (itemsData) => {
     const listItems = itemsData.map((itemData) => {
       const { 
-        kinopoiskId,
+        id,
         name,
         year,
         posterUrl,
@@ -48,7 +48,7 @@ const MovieList = () => {
       } = itemData;
 
       return (
-        <li className='movie-list__item' key={kinopoiskId}>
+        <li className='movie-list__item' key={id}>
           <img className='movie-list__item_image' src={posterUrl} alt='poster image' />
 
           <div className='movie-list__item_text'>
