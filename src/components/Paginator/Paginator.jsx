@@ -1,11 +1,11 @@
 import './Paginator.scss';
 
-const Paginator = ({ page, isLoading, switchPage }) => {
+const Paginator = ({ page, isLoading, onPageSwitch }) => {
   return (
     <div className='paginator'>
       <button
         className='paginator__button'
-        onClick={() => switchPage(-1)}
+        onClick={() => onPageSwitch(-1)}
         disabled={(page <= 1) || isLoading}
       >
         {'<'}
@@ -16,7 +16,7 @@ const Paginator = ({ page, isLoading, switchPage }) => {
 
       <button
         className='paginator__button'
-        onClick={() => switchPage(1)}
+        onClick={() => onPageSwitch(1)}
         disabled={(page >= 5) || isLoading}
       >
         {'>'}

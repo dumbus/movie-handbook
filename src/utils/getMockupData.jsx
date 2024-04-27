@@ -9,7 +9,7 @@ export const getMockupMoviesList = () => {
       name: `name${id}`,
       year: `year${id}`,
       description: `description${id}`,
-      posterUrl: '../../assets/poster.webp',
+      posterUrl: null,
       countries: `countries${id}`,
       rating: 8.8
     }
@@ -31,7 +31,7 @@ export const getMockupMovie = () => {
       name: id + 'name',
       rating: 8.8,
       year: 'similarYear',
-      posterUrl: '../../assets/poster.webp'
+      posterUrl: null
     }
 
     similarMoviesData.push(similarMovie);
@@ -45,7 +45,7 @@ export const getMockupMovie = () => {
     alternativeName: 'alternative name',
     year: 99999,
     shortDescription: 'shortDescription',
-    posterUrl: '../../assets/poster.webp',
+    posterUrl: null,
     countries: 'countries',
     rating: 8.8,
     slogan: 'slogan',

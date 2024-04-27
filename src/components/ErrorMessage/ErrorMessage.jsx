@@ -1,10 +1,8 @@
-import React from 'react';
-
 import './ErrorMessage.scss';
 
 import error from '../../assets/error.svg';
 
-const ErrorMessage = ({ errorInfo }) => {
+const ErrorMessage = () => {
   return (
     <div className='error-message'>
       <img className='error-message__image' src={error} alt='error-image' />
@@ -13,7 +11,7 @@ const ErrorMessage = ({ errorInfo }) => {
         Упс... Что-то пошло не так...
       </div>
     </div>
-  )
+  );
 };
 
 export default ErrorMessage;

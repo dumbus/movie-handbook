@@ -90,7 +90,7 @@ class MovieService {
         name: this._getName(similarMovie),
         rating: (similarMovie.rating && similarMovie.rating.kp) ? similarMovie.rating.kp.toFixed(1) : 0,
         year: similarMovie.year || null,
-        posterUrl: similarMovie.poster.url || '../../assets/poster.webp'
+        posterUrl: similarMovie.poster.url || null
       };
     });
 
@@ -103,7 +103,7 @@ class MovieService {
       name: this._getName(movie),
       year: movie.year || null,
       description: movie.description || 'Описание отсутствует',
-      posterUrl: movie.poster.url || '../../assets/poster.webp',
+      posterUrl: movie.poster.url || null,
       countries: movie.countries.map((obj) => obj.name).join(', '),
       rating: (movie.rating && movie.rating.kp) ? movie.rating.kp.toFixed(1) : 0
     }
@@ -117,7 +117,7 @@ class MovieService {
       alternativeName: movie.alternativeName || null,
       year: movie.year || null,
       shortDescription: movie.shortDescription || null,
-      posterUrl: movie.poster.url || '../../assets/poster.webp',
+      posterUrl: movie.poster.url || null,
       countries: movie.countries.map((obj) => obj.name).join(', '),
       rating: (movie.rating && movie.rating.kp) ? movie.rating.kp.toFixed(1) : 0,
       slogan: movie.slogan || '-',

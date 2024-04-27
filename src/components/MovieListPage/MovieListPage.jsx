@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import './MovieList.scss';
+import './MovieListPage.scss';
+
+import basePoster from '../../assets/poster.webp';
 
 import MovieService from '../../services/MovieService';
 
 import Paginator from '../Paginator/Paginator';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Spinner from '../Spinner/Spinner';
 
 import { getMockupMoviesList } from '../../utils/getMockupData';
 
-const MovieList = () => {
+const MovieListPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
@@ -44,6 +47,14 @@ const MovieList = () => {
     setLoading(false);
   };
 
+  const onPageSwitch = (offset) => {
+    setLoading(true);
+    
+    onRequest(page + offset);
+    setPage((page) => page + offset);
+  };
+
+
   const renderMovieList = (itemsData) => {
     const listItems = itemsData.map((itemData) => {
       const { 
@@ -58,7 +69,7 @@ const MovieList = () => {
       return (
         <Link to={`/movies/${id}`} key={id}>
           <li className='movie-list__item' key={id}>
-            <img className='movie-list__item_image' src={posterUrl} alt={name} />
+            <img className='movie-list__item_image' src={posterUrl || basePoster} alt={name} />
             <div className='movie-list__item_rating'>{rating}</div>
 
             <div className='movie-list__item_description'>
@@ -77,34 +88,27 @@ const MovieList = () => {
     );
   };
 
-  const switchPage = (offset) => {
-    setLoading(true);
-    
-    onRequest(page + offset);
-    setPage((page) => page + offset);
-  };
-
-  const list = renderMovieList(movieList);
-
   const error = hasError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
-  const content = !(isLoading || hasError) ? list : null;
+  const list = !(isLoading || hasError) ? renderMovieList(movieList) : null;
 
   return (
-    <div className='movie-list container'>
-      <h2 className='movie-list__title title'>Лучшие фильмы</h2>
+    <ErrorBoundary>
+        <div className='movie-list container'>
+        <h2 className='movie-list__title title'>Лучшие фильмы</h2>
 
-      <Paginator 
-        page={page}
-        isLoading={isLoading}
-        switchPage={switchPage}
-      />
+        {spinner}
+        {error}
+        {list}
 
-      {spinner}
-      {error}
-      {content}
-    </div>
+        <Paginator 
+          page={page}
+          isLoading={isLoading}
+          onPageSwitch={onPageSwitch}
+        />
+      </div>
+    </ErrorBoundary>
   )
 }
 
-export default MovieList;
+export default MovieListPage;

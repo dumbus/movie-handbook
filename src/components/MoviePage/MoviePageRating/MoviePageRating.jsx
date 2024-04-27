@@ -1,5 +1,3 @@
-import React from 'react';
-
 import './MoviePageRating.scss';
 
 const MoviePageRating = ({ movieData }) => {

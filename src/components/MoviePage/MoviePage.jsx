@@ -6,13 +6,14 @@ import './MoviePage.scss';
 import MovieService from '../../services/MovieService';
 
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Spinner from '../Spinner/Spinner';
 
-import MoviePageHeader from '../MoviePageHeader/MoviePageHeader';
-import MoviePageAbout from '../MoviePageAbout/MoviePageAbout';
-import MoviePagePoster from '../MoviePagePoster/MoviePagePoster';
-import MoviePageRating from '../MoviePageRating/MoviePageRating';
-import MoviePageSimilar from '../MoviePageSimilar/MoviePageSimilar';
+import MoviePageHeader from './MoviePageHeader/MoviePageHeader';
+import MoviePageAbout from './MoviePageAbout/MoviePageAbout';
+import MoviePagePoster from './MoviePagePoster/MoviePagePoster';
+import MoviePageRating from './MoviePageRating/MoviePageRating';
+import MoviePageSimilar from './MoviePageSimilar/MoviePageSimilar';
 
 import { getMockupMovie } from '../../utils/getMockupData';
 
@@ -83,11 +84,13 @@ const MoviePage = () => {
   const page = !(isLoading || hasError) ? content : null;
 
   return (
-    <div className='movie-page container'>
-      {spinner}
-      {error}
-      {page}
-    </div>
+    <ErrorBoundary>
+      <div className='movie-page container'>
+        {spinner}
+        {error}
+        {page}
+      </div>
+    </ErrorBoundary>
   )
 };
 

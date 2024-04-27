@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-
 import './MoviePageSimilar.scss';
+
+import basePoster from '../../../assets/poster.webp';
 
 const MoviePageSimilar = ({ movieData, setId }) => {
   const { similarMovies } = movieData;
@@ -21,7 +21,7 @@ const MoviePageSimilar = ({ movieData, setId }) => {
 
       return (
         <li className='movie-page__similar_item' key={id} onClick={() => setId(id)} >
-          <img className='movie-page__similar_poster' src={posterUrl} alt='poster image' />
+          <img className='movie-page__similar_poster' src={posterUrl || basePoster} alt={name} />
 
           <div className='movie-page__similar_description'>
             <div className='movie-page__similar_rating'>{rating}</div>
