@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './MoviePageSimilar.scss';
 
-const MoviePageSimilar = ({ movieData }) => {
+const MoviePageSimilar = ({ movieData, setId }) => {
   const { similarMovies } = movieData;
 
   if (!similarMovies) {
@@ -20,7 +20,7 @@ const MoviePageSimilar = ({ movieData }) => {
       } = similarMovie;
 
       return (
-        <li className='movie-page__similar_item' key={id}>
+        <li className='movie-page__similar_item' key={id} onClick={() => setId(id)} >
           <img className='movie-page__similar_poster' src={posterUrl} alt='poster image' />
 
           <div className='movie-page__similar_description'>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import './MovieList.scss';
 
@@ -7,6 +8,8 @@ import MovieService from '../../services/MovieService';
 import Paginator from '../Paginator/Paginator';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Spinner from '../Spinner/Spinner';
+
+import { getMockupMoviesList } from '../../utils/getMockupData';
 
 const MovieList = () => {
   const [movieList, setMovieList] = useState([]);
@@ -21,9 +24,14 @@ const MovieList = () => {
   }, []);
 
   const onRequest = (page) => {
-    movieService.getMovies(page)
-      .then(onMoviesListLoaded)
-      .catch(onError);
+    // =========== for local testing ===========
+    const mockupMoviesList = getMockupMoviesList();
+    onMoviesListLoaded(mockupMoviesList);
+    // =========================================
+
+    // movieService.getMovies(page)
+    //   .then(onMoviesListLoaded)
+    //   .catch(onError);
   };
 
   const onMoviesListLoaded = (movieList) => {
@@ -48,15 +56,17 @@ const MovieList = () => {
       } = itemData;
 
       return (
-        <li className='movie-list__item' key={id}>
-          <img className='movie-list__item_image' src={posterUrl} alt='poster image' />
-          <div className='movie-list__item_rating'>{rating}</div>
+        <Link to={`/movies/${id}`} key={id}>
+          <li className='movie-list__item' key={id}>
+            <img className='movie-list__item_image' src={posterUrl} alt={name} />
+            <div className='movie-list__item_rating'>{rating}</div>
 
-          <div className='movie-list__item_description'>
-            <div className='movie-list__item_name'>{`${name} (${year})`}</div>
-            <div className='movie-list__item_country'>{countries}</div>
-          </div>
-        </li>
+            <div className='movie-list__item_description'>
+              <div className='movie-list__item_name'>{`${name} (${year})`}</div>
+              <div className='movie-list__item_country'>{countries}</div>
+            </div>
+          </li>
+        </Link>
       );
     });
 

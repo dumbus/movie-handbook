@@ -1,7 +1,8 @@
 class MovieService {  
   _apiBaseUrl = 'https://api.kinopoisk.dev/v1.4/';
   // _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
-  _apiKey = 'HG1DEST-BT748Z3-QHR2SN7-HKGPA9B';
+  // _apiKey = 'HG1DEST-BT748Z3-QHR2SN7-HKGPA9B';
+  _apiKey = 'S88RBF0-CGFM9AT-PP6890E-VCQA8HT';
   _fetchOptions = {
     method: 'GET',
     headers: {
@@ -53,7 +54,11 @@ class MovieService {
   }
 
   _getFees(movie) {
-    if (movie.fees && movie.fees.world.value && movie.fees.world.currency) {
+    if (!movie.fees || !movie.fees.world) {
+      return '-';
+    }
+
+    if (movie.fees.world.value && movie.fees.world.currency) {
       return `${movie.fees.world.currency}${movie.fees.world.value}`;
     }
 
@@ -83,7 +88,7 @@ class MovieService {
       return {
         id: similarMovie.id,
         name: this._getName(similarMovie),
-        rating: similarMovie.rating.kp.toFixed(1) || 0,
+        rating: (similarMovie.rating && similarMovie.rating.kp) ? similarMovie.rating.kp.toFixed(1) : 0,
         year: similarMovie.year || null,
         posterUrl: similarMovie.poster.url || '../../assets/poster.webp'
       };
@@ -100,11 +105,12 @@ class MovieService {
       description: movie.description || 'Описание отсутствует',
       posterUrl: movie.poster.url || '../../assets/poster.webp',
       countries: movie.countries.map((obj) => obj.name).join(', '),
-      rating: movie.rating.kp.toFixed(1) || 0
+      rating: (movie.rating && movie.rating.kp) ? movie.rating.kp.toFixed(1) : 0
     }
   }
 
   _transformMovieFull = (movie) => {
+
     return {
       id: movie.id,
       name: this._getName(movie),
@@ -113,7 +119,7 @@ class MovieService {
       shortDescription: movie.shortDescription || null,
       posterUrl: movie.poster.url || '../../assets/poster.webp',
       countries: movie.countries.map((obj) => obj.name).join(', '),
-      rating: movie.rating.kp.toFixed(1) || 0,
+      rating: (movie.rating && movie.rating.kp) ? movie.rating.kp.toFixed(1) : 0,
       slogan: movie.slogan || '-',
       budget: this._getBudget(movie),
       fees: this._getFees(movie),
@@ -123,7 +129,6 @@ class MovieService {
       directors: this._getPersons(movie, 'director'),
       producers: this._getPersons(movie, 'producer'),
       composers: this._getPersons(movie, 'composer'),
-      rating: movie.rating.kp.toFixed(1) || 0,
       similarMovies: movie.similarMovies ? this._getSimilarMovies(movie) : null
     }
   }

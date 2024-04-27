@@ -1,5 +1,9 @@
 .movie-page__header {
 
+  &_item {
+    overflow-wrap: anywhere;
+  }
+
   &_subtitle {
     color: rgba(255, 255, 255, 0.6);
   }

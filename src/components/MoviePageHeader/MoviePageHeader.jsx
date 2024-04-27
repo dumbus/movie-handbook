@@ -10,9 +10,9 @@ const MoviePageHeader = ({ movieData }) => {
 
   return (
     <div className='movie-page__header block'>
-      <h2 className='movie-page__header_title title'>{`${name} (${year})`}</h2>
-      <h3 className='movie-page__header_subtitle title'>{alternativeName}</h3>
-      <div className='movie-page__header_short-description'>{shortDescription}</div>
+      <h2 className='movie-page__header_title movie-page__header_item title'>{`${name} (${year})`}</h2>
+      <h3 className='movie-page__header_subtitle movie-page__header_item title'>{alternativeName}</h3>
+      <div className='movie-page__header_short-description movie-page__header_item'>{shortDescription}</div>
     </div>
   );
 };

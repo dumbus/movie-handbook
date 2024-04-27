@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import './MoviePage.scss';
 
@@ -13,21 +14,34 @@ import MoviePagePoster from '../MoviePagePoster/MoviePagePoster';
 import MoviePageRating from '../MoviePageRating/MoviePageRating';
 import MoviePageSimilar from '../MoviePageSimilar/MoviePageSimilar';
 
-const MoviePage = ({ id }) => {
+import { getMockupMovie } from '../../utils/getMockupData';
+
+const MoviePage = () => {
+  const { baseId } = useParams();
+
+  const [id, setId] = useState(baseId);
   const [movieData, setMovieData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
 
   const movieService = new MovieService();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
+    navigate(`/movies/${id}`);
     onRequest(id);
-  }, []);
+  }, [id]);
 
   const onRequest = (id) => {
-    movieService.getMovieById(id)
-      .then(onMovieDataLoaded)
-      .catch(onError);
+    // =========== for local testing ===========
+    const mockupMovieData = getMockupMovie(id);
+    onMovieDataLoaded(mockupMovieData);
+    // =========================================
+
+    // movieService.getMovieById(id)
+    //   .then(onMovieDataLoaded)
+    //   .catch(onError);
   };
 
   const onMovieDataLoaded = (movieData) => {
@@ -35,7 +49,9 @@ const MoviePage = ({ id }) => {
     setLoading(false);
   };
 
-  const onError = () => {
+  const onError = (error) => {
+    console.log(error);
+
     setError(true);
     setLoading(false);
   };
@@ -43,18 +59,18 @@ const MoviePage = ({ id }) => {
   const renderContent = (movieData) => {
     return (
       <div className='movie-page__grid'>
-        <div className='movie-page__grid_short'>
+        <div className='movie-page__grid_short left'>
           <MoviePageHeader movieData={movieData} />
           <MoviePageAbout movieData={movieData} />
         </div>
 
-        <div className='movie-page__grid_short'>
+        <div className='movie-page__grid_short right'>
           <MoviePagePoster movieData={movieData} />
           <MoviePageRating movieData={movieData} />
         </div>
 
         <div className='movie-page__grid_long'>
-          <MoviePageSimilar movieData={movieData} />
+          <MoviePageSimilar movieData={movieData} setId={setId} />
         </div>
       </div>
     )

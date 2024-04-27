@@ -38,6 +38,7 @@
   }
 
   &_name {
+    overflow-wrap: anywhere;
     font-weight: 700;
   }
 }
@@ -46,7 +47,7 @@
   .movie-page__similar {
 
     &_list {
-      grid-template-columns: repeat(4, 1fr);
+      gap: 0 0.5rem;
     }
   }
 }
