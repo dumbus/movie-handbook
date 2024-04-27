@@ -5,12 +5,18 @@ import Footer from './components/Footer/Footer';
 import MovieList from './components/MovieList/MovieList';
 import MoviePage from './components/MoviePage/MoviePage';
 
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+
 const App = () => {
   return (
     <div className='wrapper'>
       <Header />
-      {/* <MovieList /> */}
-      <MoviePage id={251733} />
+        <ErrorBoundary>
+          <MovieList />
+        </ErrorBoundary>
+        {/* <ErrorBoundary >
+          <MoviePage id={251733} />
+        </ErrorBoundary> */}
       <Footer />
     </div>
   )

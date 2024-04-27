@@ -35,7 +35,7 @@ const MoviePage = ({ id }) => {
     setLoading(false);
   };
 
-  const onError = (error) => {
+  const onError = () => {
     setError(true);
     setLoading(false);
   };

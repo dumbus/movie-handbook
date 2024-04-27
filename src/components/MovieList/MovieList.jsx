@@ -68,7 +68,7 @@ const MovieList = () => {
   };
 
   const switchPage = (offset) => {
-    setError(false);
+    setError(true);
     setLoading(true);
     
     onRequest(page + offset);
