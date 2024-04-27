@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 
 import './MoviePage.scss';
 
-import poster from '../../assets/poster.webp';
-
 import MovieService from '../../services/MovieService';
 
-import Error from '../Error/Error';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Spinner from '../Spinner/Spinner';
 
 import MoviePageHeader from '../MoviePageHeader/MoviePageHeader';
@@ -64,7 +62,7 @@ const MoviePage = ({ id }) => {
 
   const content = renderContent(movieData);
 
-  const error = hasError ? <Error /> : null;
+  const error = hasError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
   const page = !(isLoading || hasError) ? content : null;
 

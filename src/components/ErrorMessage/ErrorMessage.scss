@@ -1,17 +1,15 @@
 @import '../../styles/variables.scss';
 
-.error {
+.error-message {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: auto;
   padding: 0.5rem;
   outline: 2px solid $primary;
   border-radius: 1rem;
-  flex: 1;
   text-align: center;
+  flex: 1;
 
   &__image {
     width: 5rem;

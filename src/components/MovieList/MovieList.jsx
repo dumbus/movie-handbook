@@ -5,7 +5,7 @@ import './MovieList.scss';
 import MovieService from '../../services/MovieService';
 
 import Paginator from '../Paginator/Paginator';
-import Error from '../Error/Error';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Spinner from '../Spinner/Spinner';
 
 const MovieList = () => {
@@ -77,7 +77,7 @@ const MovieList = () => {
 
   const list = renderMovieList(movieList);
 
-  const error = hasError ? <Error /> : null;
+  const error = hasError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
   const content = !(isLoading || hasError) ? list : null;
 
