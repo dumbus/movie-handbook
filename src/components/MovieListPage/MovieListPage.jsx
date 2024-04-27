@@ -88,9 +88,11 @@ const MovieListPage = () => {
     );
   };
 
+  const list = renderMovieList(movieList)
+
   const error = hasError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
-  const list = !(isLoading || hasError) ? renderMovieList(movieList) : null;
+  const content = !(isLoading || hasError) ? list : null;
 
   return (
     <ErrorBoundary>

@@ -1,6 +1,6 @@
 import './ErrorMessage.scss';
 
-import error from '../../assets/error.svg';
+import error from '../../assets/icons/error.svg';
 
 const ErrorMessage = () => {
   return (
