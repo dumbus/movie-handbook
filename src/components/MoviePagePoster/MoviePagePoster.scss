@@ -1,0 +1,11 @@
+.movie-page__poster_image {
+  width: 320px;
+  height: 480px;
+  border-radius: 1rem;
+}
+
+@media (max-width: 767.98px) {
+  .movie-page__poster_image {
+    display: none;
+  }
+}

@@ -1,6 +1,7 @@
 class MovieService {  
   _apiBaseUrl = 'https://api.kinopoisk.dev/v1.4/';
-  _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
+  // _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
+  _apiKey = 'HG1DEST-BT748Z3-QHR2SN7-HKGPA9B';
   _fetchOptions = {
     method: 'GET',
     headers: {
@@ -25,34 +26,70 @@ class MovieService {
     return result.docs.map(item => this._transformMovie(item));
   }
 
-  // getMovieById = async (id) => {
-  //   const result = await this.getResource(`${this._apiBaseUrl}/movie/${id}`);
+  getMovieById = async (id) => {
+    const result = await this.getResource(`${this._apiBaseUrl}movie/${id}`);
 
-  //   return this._transformMovieFull(result);
-  // }
+    return this._transformMovieFull(result);
+  }
 
   _getName(movie) {
-    if (movie.name && movie.name.length > 0) {
+    if (movie.name) {
       return movie.name;
-    } else if (movie.alternativeName && movie.alternativeName.length > 0) {
+    } else if (movie.alternativeName) {
       return movie.alternativeName;
-    } else if (movie.names && movie.names[0] && movie.names[0] > 0) {
+    } else if (movie.names && movie.names[0]) {
       return movie.names[0];
     }
 
     return 'Название неизвестно';
   }
 
-  _getRating(rating) {
-    const ratingStr = String(rating);
-
-    // String(rating).length > 2 ? ratingStr.slice(0, 2) : rating;
-
-    if (ratingStr.length > 2) {
-      return ratingStr.slice(0, 2);
-    } else {
-      return ratingStr;
+  _getBudget(movie) {
+    if (movie.budget.value && movie.budget.currency) {
+      return `${movie.budget.currency}${movie.budget.value}`;
     }
+
+    return '-';
+  }
+
+  _getFees(movie) {
+    if (movie.fees && movie.fees.world.value && movie.fees.world.currency) {
+      return `${movie.fees.world.currency}${movie.fees.world.value}`;
+    }
+
+    return '-';
+  }
+
+  _getPersons(movie, profession) {
+    const result = movie.persons.filter((person) => {
+      if (
+        person.enProfession && 
+        person.enProfession === profession &&
+        person.name
+      ) {
+        return true;
+      }
+
+      return false;
+    }).map((person) => {
+      return person.name;
+    }).join(', ');
+
+    return result || '-';
+  }
+
+  _getSimilarMovies(movie) {
+    const result = movie.similarMovies.slice(0, 4).map((similarMovie) => {
+      return {
+        id: similarMovie.id,
+        name: this._getName(similarMovie),
+        rating: similarMovie.rating.kp.toFixed(1) || 0,
+        year: similarMovie.year || null,
+        posterUrl: similarMovie.poster.url || '../../assets/poster.webp'
+      };
+    });
+
+    return result;
   }
 
   _transformMovie = (movie) => {
@@ -61,25 +98,35 @@ class MovieService {
       name: this._getName(movie),
       year: movie.year || null,
       description: movie.description || 'Описание отсутствует',
-      posterUrl: movie.poster.url || './assets/poster.webp',
+      posterUrl: movie.poster.url || '../../assets/poster.webp',
       countries: movie.countries.map((obj) => obj.name).join(', '),
       rating: movie.rating.kp.toFixed(1) || 0
     }
   }
 
-  // _transformMovieFull = (movieFull) => {
-  //   return {
-  //     kinopoiskId: movieFull.kinopoiskId,
-  //     name: this._getName(movieFull),
-  //     description: movieFull.shortDescription || 'NO DESCRIPTION',
-  //     coverUrl: movieFull.coverUrl || './assets/404-cover.jpg',
-  //     filmLength: movieFull.filmLength,
-  //     year: movieFull.year,
-  //     genres: movieFull.genres,
-  //     countries: movieFull.countries,
-  //     ratingImdb: movieFull.ratingImdb
-  //   }
-  // }
+  _transformMovieFull = (movie) => {
+    return {
+      id: movie.id,
+      name: this._getName(movie),
+      alternativeName: movie.alternativeName || null,
+      year: movie.year || null,
+      shortDescription: movie.shortDescription || null,
+      posterUrl: movie.poster.url || '../../assets/poster.webp',
+      countries: movie.countries.map((obj) => obj.name).join(', '),
+      rating: movie.rating.kp.toFixed(1) || 0,
+      slogan: movie.slogan || '-',
+      budget: this._getBudget(movie),
+      fees: this._getFees(movie),
+      movieLength: movie.movieLength || '-',
+      ageRating: `${movie.ageRating}+` || '-',
+      genres: movie.genres.map((obj) => obj.name).join(', '),
+      directors: this._getPersons(movie, 'director'),
+      producers: this._getPersons(movie, 'producer'),
+      composers: this._getPersons(movie, 'composer'),
+      rating: movie.rating.kp.toFixed(1) || 0,
+      similarMovies: movie.similarMovies ? this._getSimilarMovies(movie) : null
+    }
+  }
 }
 
 export default MovieService;

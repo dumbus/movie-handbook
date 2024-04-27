@@ -9,8 +9,8 @@ const App = () => {
   return (
     <div className='wrapper'>
       <Header />
-      <MovieList />
-      {/* <MoviePage /> */}
+      {/* <MovieList /> */}
+      <MoviePage id={251733} />
       <Footer />
     </div>
   )
