@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/movies-handbook/static/css/main.ec698463.css",
+    "main.js": "/movies-handbook/static/js/main.fb5ddaed.js",
+    "static/media/spinner.svg": "/movies-handbook/static/media/spinner.797541424edf55a7c9c11dd8aca74016.svg",
+    "static/media/error.svg": "/movies-handbook/static/media/error.42cc7ae3ce6177ca78b7ba696f7efd26.svg",
+    "static/media/poster.webp": "/movies-handbook/static/media/poster.32139a6d044f31d15728.webp",
+    "static/media/not-found.svg": "/movies-handbook/static/media/not-found.06259324243fa8690934fc223d3687f2.svg",
+    "index.html": "/movies-handbook/index.html",
+    "static/media/star-empty.svg": "/movies-handbook/static/media/star-empty.0b80cb83357e8835af80.svg",
+    "static/media/star-filled.svg": "/movies-handbook/static/media/star-filled.3a48f4947f7df8500e4c.svg",
+    "main.ec698463.css.map": "/movies-handbook/static/css/main.ec698463.css.map",
+    "main.fb5ddaed.js.map": "/movies-handbook/static/js/main.fb5ddaed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec698463.css",
+    "static/js/main.fb5ddaed.js"
+  ]
+}
