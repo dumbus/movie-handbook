@@ -28,8 +28,10 @@ const MovieListPage = () => {
 
   const onRequest = (page) => {
     // =========== for local testing ===========
-    const mockupMoviesList = getMockupMoviesList();
-    onMoviesListLoaded(mockupMoviesList);
+    setTimeout(() => {
+      const mockupMoviesList = getMockupMoviesList();
+      onMoviesListLoaded(mockupMoviesList);
+    }, 1000);
     // =========================================
 
     // movieService.getMovies(page)
@@ -49,9 +51,10 @@ const MovieListPage = () => {
 
   const onPageSwitch = (offset) => {
     setLoading(true);
+    setPage((page) => page + offset);
+    window.scrollTo(0, 0);
     
     onRequest(page + offset);
-    setPage((page) => page + offset);
   };
 
 
@@ -102,7 +105,7 @@ const MovieListPage = () => {
 
         {spinner}
         {error}
-        {list}
+        {content}
 
         <Paginator 
           page={page}
