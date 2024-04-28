@@ -17,7 +17,10 @@ export const getMockupMoviesList = () => {
     moviesData.push(movieData);
   }
 
-  return moviesData;
+  return {
+    total: 20,
+    movieList: moviesData
+  };
 }
 
 export const getMockupMovie = () => {

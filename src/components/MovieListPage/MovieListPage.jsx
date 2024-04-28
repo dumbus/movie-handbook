@@ -19,21 +19,20 @@ const MovieListPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
   const [page, setPage] = useState(Number(localStorage.getItem('pagination-page')) || 1);
+  const [total, setTotal] = useState(null);
 
   const movieService = new MovieService();
 
   useEffect(() => {
-    console.log('effected');
-
     onRequest(page);
   }, [page]);
 
   const onRequest = (page) => {
-    // console.log(page);
     // =========== for local testing ===========
     setTimeout(() => {
-      const mockupMoviesList = getMockupMoviesList();
-      onMoviesListLoaded(mockupMoviesList);
+      const mockupData = getMockupMoviesList();
+      console.log(mockupData);
+      onMoviesListLoaded(mockupData);
     }, 1000);
     // =========================================
 
@@ -42,8 +41,9 @@ const MovieListPage = () => {
     //   .catch(onError);
   };
 
-  const onMoviesListLoaded = (movieList) => {
+  const onMoviesListLoaded = ({ total, movieList }) => {
     setMovieList(movieList);
+    setTotal(total);
     setLoading(false);
   };
 
@@ -60,7 +60,6 @@ const MovieListPage = () => {
     
     onRequest(page + offset);
   };
-
 
   const renderMovieList = (itemsData) => {
     const listItems = itemsData.map((itemData) => {
@@ -115,6 +114,7 @@ const MovieListPage = () => {
           page={page}
           isLoading={isLoading}
           onPageSwitch={onPageSwitch}
+          total={total}
         />
       </div>
     </ErrorBoundary>
