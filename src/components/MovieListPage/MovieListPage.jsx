@@ -28,15 +28,15 @@ const MovieListPage = () => {
 
   const onRequest = (page) => {
     // =========== for local testing ===========
-    // setTimeout(() => {
-    //   const mockupMoviesList = getMockupMoviesList();
-    //   onMoviesListLoaded(mockupMoviesList);
-    // }, 1000);
+    setTimeout(() => {
+      const mockupMoviesList = getMockupMoviesList();
+      onMoviesListLoaded(mockupMoviesList);
+    }, 1000);
     // =========================================
 
-    movieService.getMovies(page)
-      .then(onMoviesListLoaded)
-      .catch(onError);
+    // movieService.getMovies(page)
+    //   .then(onMoviesListLoaded)
+    //   .catch(onError);
   };
 
   const onMoviesListLoaded = (movieList) => {

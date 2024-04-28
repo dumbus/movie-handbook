@@ -1,13 +1,16 @@
 @import '../../styles/variables.scss';
 
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 0;
   padding: 1rem;
   background-color: rgba($color: #ffffff, $alpha: 0.5);
   font-size: 0.8rem;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   &__text {
     display: flex;

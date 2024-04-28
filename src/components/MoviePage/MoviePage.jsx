@@ -42,21 +42,17 @@ const MoviePage = () => {
     setId(movieId);
   }, [location.pathname]);
 
-  // useEffect(() => {
-  //   const newId = 
-  // }, [location.pathname]);
-
   const onRequest = (id) => {
     // =========== for local testing ===========
-    // setTimeout(() => {
-    //   const mockupMovieData = getMockupMovie(id);
-    //   onMovieDataLoaded(mockupMovieData);
-    // }, 1000);
+    setTimeout(() => {
+      const mockupMovieData = getMockupMovie(id);
+      onMovieDataLoaded(mockupMovieData);
+    }, 1000);
     // =========================================
 
-    movieService.getMovieById(id)
-      .then(onMovieDataLoaded)
-      .catch(onError);
+    // movieService.getMovieById(id)
+    //   .then(onMovieDataLoaded)
+    //   .catch(onError);
   };
 
   const onMovieDataLoaded = (movieData) => {
