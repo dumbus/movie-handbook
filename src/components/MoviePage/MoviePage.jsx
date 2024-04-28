@@ -27,18 +27,19 @@ const MoviePage = () => {
 
   const movieService = new MovieService();
 
-  const navigate = useNavigate();
-
   useEffect(() => {
+    setLoading(true);
+
     window.scrollTo(0, 0);
-    navigate(`/movies/${id}`);
     onRequest(id);
   }, [id]);
 
   const onRequest = (id) => {
     // =========== for local testing ===========
-    const mockupMovieData = getMockupMovie(id);
-    onMovieDataLoaded(mockupMovieData);
+    setTimeout(() => {
+      const mockupMovieData = getMockupMovie(id);
+      onMovieDataLoaded(mockupMovieData);
+    }, 1000);
     // =========================================
 
     // movieService.getMovieById(id)

@@ -14,7 +14,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route exact path='/' element={<MovieListPage />} />
-          <Route exect path='/movies' element={<MovieListPage />} />
+          <Route exact path='/movies' element={<MovieListPage />} />
           <Route exact path='/movies/:baseId' element={<MoviePage />} />
           <Route path='*' element={<NotFoundPage/> } />
         </Routes>

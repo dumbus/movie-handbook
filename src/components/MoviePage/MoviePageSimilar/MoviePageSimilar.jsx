@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import './MoviePageSimilar.scss';
 
 import basePoster from '../../../assets/poster.webp';
@@ -20,14 +22,19 @@ const MoviePageSimilar = ({ movieData, setId }) => {
       } = similarMovie;
 
       return (
-        <li className='movie-page__similar_item' key={id} onClick={() => setId(id)} >
+        <Link 
+          to={`/movies/${id}`} 
+          className='movie-page__similar_item' 
+          key={id} 
+          onClick={() => setId(id)}
+        >
           <img className='movie-page__similar_poster' src={posterUrl || basePoster} alt={name} />
 
           <div className='movie-page__similar_description'>
             <div className='movie-page__similar_rating'>{rating}</div>
             <div className='movie-page__similar_name'>{`${name} (${year})`}</div>
           </div>  
-        </li>
+        </Link>
       )
     });
 
