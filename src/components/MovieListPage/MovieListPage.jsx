@@ -23,6 +23,9 @@ const MovieListPage = () => {
   const movieService = new MovieService();
 
   useEffect(() => {
+    const savedPage = Number(localStorage.getItem('pagination-page'));
+    savedPage ? setPage(savedPage) : localStorage.setItem('pagination-page', page);
+
     onRequest(page);
   }, []);
 
@@ -51,6 +54,7 @@ const MovieListPage = () => {
 
   const onPageSwitch = (offset) => {
     setLoading(true);
+    localStorage.setItem('pagination-page', page + offset);
     setPage((page) => page + offset);
     window.scrollTo(0, 0);
     
