@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+## Тестовое задание на стажировку VK React - "Энциклопедия кино"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![react version](https://img.shields.io/badge/react-18.2.0-brightgreen)
+![react-dom version](https://img.shields.io/badge/react--dom-18.2.0-brightgreen)
+![react-router-dom version](https://img.shields.io/badge/react--router--dom-6.23.0-brightgreen)
+![react-scripts version](https://img.shields.io/badge/react--scripts-5.0.1-brightgreen)
+![sass version](https://img.shields.io/badge/sass-1.75.0-brightgreen)
+![eslint version](https://img.shields.io/badge/eslint-8.57.0-brightgreen)
+![prettier version](https://img.shields.io/badge/prettier-3.2.5-brightgreen)
 
-## Available Scripts
+# Использованные технологии и инструменты
 
-In the project directory, you can run:
+- **react**: React - это JavaScript-библиотека для создания пользовательских интерфейсов, позволяющая разработчикам создавать мощные и динамические веб-приложения с использованием компонентов.
+- **react-dom**: Пакет react-dom предоставляет инструменты для работы с DOM в React, позволяя рендерить React-компоненты в браузере.
+- **react-router-dom**: React Router предоставляет набор навигационных компонентов для React, предоставляющий возможность создавать динамические маршруты и управлять навигацией в одностраничных приложениях.
+- **react-scripts**: Пакет react-scripts содержит набор скриптов и конфигураций, необходимых для разработки React-приложений, включая сборку, запуск локального сервера и другие инструменты разработки.
+- **sass**: SASS/SCSS - препроцессор CSS, который позволяет использовать переменные, миксины, вложенные селекторы и другие возможности для упрощения написания и управления стилями в веб-приложениях.
+- **eslint**: ESLint - инструмент статического анализа JavaScript, помогающий выявлять и исправлять потенциальные проблемы в коде, обеспечивая согласованность стиля и улучшая его качество.
+- **prettier**: Инструмент для форматирования кода, который автоматически приводит код к единому стилю, устраняя недостатки форматирования и делая код более читаемым.
 
-### `npm start`
+## Где посмотреть на работу приложения
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Приложение развёрнуто на платформе github-pages и доступно по ссылке:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+Ссылка на github-pages
+```
 
-### `npm test`
+2. Развернуть приложение локально (см. далее)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Что реализовано в приложении
 
-### `npm run build`
+1. Получение данных с помощью [Кинопоиск API](https://img.shields.io/badge/react-18.2.0-brightgreen)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Главная страница `/` или `/movies`:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - Содержит список фильмов, получаемых с помощью [Кинопоиск API](https://img.shields.io/badge/react-18.2.0-brightgreen)
+  - Возможна навигация по страницам списка с помощью элемента пагинации внизу страницы
+  - Выбранная страница сохраняется в LocalStorage и будет открыта при повторном открытии вкладки или при переходе с другого URL
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Страница с карточкой фильма `/movies/:id`:
 
-### `npm run eject`
+  - При нажатии на карточку в списке фильмов `/movies` происходит переход на страницу с карточкой фильма, содержащую подробную информацию о выбранном фильме
+  - Также страница содержит список похожих фильмов, нажатие на карточку похожего фильма откроет страницу `/movies/:id` с его карточкой
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+4. В случае перехода по несуществующему адресу будет показана страница 404
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+5. Реализована адаптивная вёрстка вплоть до экранов мобильних устройств шириной в 320 пикселей
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Как развернуть приложение локально
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Скопировать репозиторий:
 
-## Learn More
+```
+git clone https://github.com/dumbus/movies-handbook.git
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Поменять текущую папку:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+cd movies-handbook
+```
 
-### Code Splitting
+3. Установить зависимости:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+npm install
+```
 
-### Analyzing the Bundle Size
+4. Запустить приложение:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+npm run start
+```
 
-### Making a Progressive Web App
+5. Открыть приложение в браузере:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+http://localhost:{port}
+```
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+По умолчанию port = 3000
