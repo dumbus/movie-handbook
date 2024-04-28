@@ -3,7 +3,8 @@ class MovieService {
   // _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
   // _apiKey = 'HG1DEST-BT748Z3-QHR2SN7-HKGPA9B';
   // _apiKey = 'S88RBF0-CGFM9AT-PP6890E-VCQA8HT';
-  _apiKey = '6N51YFF-22XM09R-PWXCGXS-P8PE2G6';
+  // _apiKey = '6N51YFF-22XM09R-PWXCGXS-P8PE2G6';
+  _apiKey = 'AFN4TNJ-0V8MG0X-NSE5PMR-TWG4PNY';
   _fetchOptions = {
     method: 'GET',
     headers: {
@@ -28,7 +29,7 @@ class MovieService {
     );
 
     return {
-      total: raw.total,
+      pages: raw.pages,
       movieList: raw.docs.map((item) => this._transformMovie(item))
     };
   };

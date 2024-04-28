@@ -2,13 +2,13 @@ import React from 'react';
 
 import './Paginator.scss';
 
-const Paginator = ({ page, isLoading, onPageSwitch, total }) => {
+const Paginator = ({ page, isLoading, onPageSwitch, pages }) => {
   return (
     <div className="paginator">
       <button
         className="paginator__button"
         onClick={() => onPageSwitch(-1)}
-        disabled={isLoading || !total || page <= 1}
+        disabled={isLoading || !pages || page <= 1}
       >
         {'<'}
       </button>
@@ -19,7 +19,7 @@ const Paginator = ({ page, isLoading, onPageSwitch, total }) => {
       <button
         className="paginator__button"
         onClick={() => onPageSwitch(1)}
-        disabled={isLoading || !total || page >= total}
+        disabled={isLoading || !pages || page >= pages}
       >
         {'>'}
       </button>

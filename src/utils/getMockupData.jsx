@@ -18,7 +18,7 @@ export const getMockupMoviesList = () => {
   }
 
   return {
-    total: 20,
+    pages: 20,
     movieList: moviesData
   };
 };

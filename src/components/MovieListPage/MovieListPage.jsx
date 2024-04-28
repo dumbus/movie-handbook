@@ -21,7 +21,7 @@ const MovieListPage = () => {
   const [page, setPage] = useState(
     Number(localStorage.getItem('pagination-page')) || 1
   );
-  const [total, setTotal] = useState(null);
+  const [pages, setPages] = useState(null);
 
   // eslint-disable-next-line
   const movieService = new MovieService();
@@ -44,9 +44,9 @@ const MovieListPage = () => {
     //   .catch(onError);
   };
 
-  const onMoviesListLoaded = ({ total, movieList }) => {
+  const onMoviesListLoaded = ({ pages, movieList }) => {
     setMovieList(movieList);
-    setTotal(total);
+    setPages(pages);
     setLoading(false);
   };
 
@@ -96,7 +96,7 @@ const MovieListPage = () => {
           page={page}
           isLoading={isLoading}
           onPageSwitch={onPageSwitch}
-          total={total}
+          pages={pages}
         />
       </>
     );
