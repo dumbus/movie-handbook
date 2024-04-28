@@ -41,7 +41,7 @@ export const getMockupMovie = () => {
 
   const movieData = {
     id: id,
-    name: `${id} name`,
+    name: `${id} name${id}`,
     alternativeName: 'alternative name',
     year: 99999,
     shortDescription: 'shortDescription',
@@ -57,6 +57,49 @@ export const getMockupMovie = () => {
     directors: 'director',
     producers: 'producer',
     composers: 'composer',
+    similarMovies: similarMoviesData
+  }
+
+  return movieData;
+};
+
+export const getMockupMovieBig = () => {
+  const similarMoviesData = [];
+
+  for (let i = 0; i < 5; i++) {
+    const id = Math.random() * 1000;
+
+    const similarMovie = {
+      id: id,
+      name: id + 'name',
+      rating: 8.8,
+      year: 'similarYear',
+      posterUrl: null
+    }
+
+    similarMoviesData.push(similarMovie);
+  }
+
+  const id = Math.random() * 1000;
+
+  const movieData = {
+    id: id,
+    name: `${id} name${id} name${id} name${id} name`,
+    alternativeName: 'alternative name alternative namealternative namealternative namealternative name',
+    year: 99999,
+    shortDescription: 'shortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescription',
+    posterUrl: null,
+    countries: 'countriescountriescountriescountriescountriescountries',
+    rating: 8.8,
+    slogan: 'sloganslogansloganslogansloganslogan',
+    budget: 'budgetbudgetbudgetbudgetbudgetbudget',
+    fees: 'feesfeesfeesfeesfeesfees',
+    movieLength: 'movieLengthmovieLengthmovieLengthmovieLengthmovieLength',
+    ageRating: '18+',
+    genres: 'genresgenresgenresgenresgenresv',
+    directors: 'directordirectordirectordirectordirectordirector',
+    producers: 'producerproducerproducerproducerproducerproducer',
+    composers: 'composercomposercomposercomposercomposercomposer',
     similarMovies: similarMoviesData
   }
 
