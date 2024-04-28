@@ -12,6 +12,11 @@
     text-align: center;
   }
 
+  &__subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
   &__list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -80,30 +85,43 @@
 }
 
 @media (max-width: 767.98px) {
-  .movie-list__list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .movie-list {
 
-  .movie-list__item {
-    gap: 0.5rem 0;
-
-    &_caption {
-      font-size: 0.8rem;
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    &__item {
+      gap: 0.5rem 0;
+  
+      &_caption {
+        font-size: 0.8rem;
+      }
     }
   }
 }
 
 @media (max-width: 576.98px) {
-  .movie-list__list {
-    gap: 1rem;
-  }
+  .movie-list {
+    &__title {
+      font-size: 1.5rem;
+    }
+  
+    &__subtitle {
+      font-size: 1rem;
+    }
 
-  .movie-list__item {
-
-    &_rating {
-      padding: 0.4rem 0.5rem;
-      font-size: 0.8rem;
-      line-height: 0.8rem;
-    } 
+    &__list {
+      gap: 1rem;
+    }
+  
+    &_item {
+  
+      &_rating {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.8rem;
+        line-height: 0.8rem;
+      } 
+    }
   }
 }

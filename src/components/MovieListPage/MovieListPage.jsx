@@ -31,7 +31,6 @@ const MovieListPage = () => {
     // =========== for local testing ===========
     setTimeout(() => {
       const mockupData = getMockupMoviesList();
-      console.log(mockupData);
       onMoviesListLoaded(mockupData);
     }, 1000);
     // =========================================
@@ -89,13 +88,22 @@ const MovieListPage = () => {
     });
 
     return (
-      <ul className='movie-list__list'>
-        {listItems}
-      </ul>
+      <>
+        <ul className='movie-list__list'>
+          {listItems}
+        </ul>
+
+        <Paginator 
+        page={page}
+        isLoading={isLoading}
+        onPageSwitch={onPageSwitch}
+        total={total}
+        />
+      </>
     );
   };
 
-  const list = renderMovieList(movieList)
+  const list = renderMovieList(movieList);
 
   const error = hasError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
@@ -103,19 +111,13 @@ const MovieListPage = () => {
 
   return (
     <ErrorBoundary>
-        <div className='movie-list container'>
-        <h2 className='movie-list__title title'>Лучшие фильмы</h2>
+      <div className='movie-list container'>
+        <h2 className='movie-list__title title'>Список фильмов</h2>
+        <h3 className='movie-list__subtitle title'>{`Текущая страница: ${page}`}</h3>
 
         {spinner}
         {error}
         {content}
-
-        <Paginator 
-          page={page}
-          isLoading={isLoading}
-          onPageSwitch={onPageSwitch}
-          total={total}
-        />
       </div>
     </ErrorBoundary>
   )
