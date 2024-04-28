@@ -18,18 +18,18 @@ const MovieListPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(Number(localStorage.getItem('pagination-page')) || 1);
 
   const movieService = new MovieService();
 
   useEffect(() => {
-    const savedPage = Number(localStorage.getItem('pagination-page'));
-    savedPage ? setPage(savedPage) : localStorage.setItem('pagination-page', page);
+    console.log('effected');
 
     onRequest(page);
-  }, []);
+  }, [page]);
 
   const onRequest = (page) => {
+    // console.log(page);
     // =========== for local testing ===========
     setTimeout(() => {
       const mockupMoviesList = getMockupMoviesList();

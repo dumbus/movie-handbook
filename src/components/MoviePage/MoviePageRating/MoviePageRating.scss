@@ -51,6 +51,12 @@ $star-filled: '../../../assets/icons/star-filled.svg';
   }
 }
 
+@media (max-width: 767.98px) {
+  .movie-page__rating {
+    width: 100%;
+  }
+}
+
 @media (max-width: 576.98px) {
   .movie-page__rating {
 

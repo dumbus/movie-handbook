@@ -5,7 +5,15 @@
 }
 
 @media (max-width: 767.98px) {
-  .movie-page__poster_image {
-    display: none;
+  .movie-page__poster {
+
+    &_wrapper {
+      width: 100%;
+    }
+
+    &_image {
+      width: 40%;
+      height: auto;
+    }
   }
 }

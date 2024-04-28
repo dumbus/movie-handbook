@@ -65,6 +65,13 @@ a {
   .container {
     max-width: 540px;
   }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 /* // Extra small devices (portrait phones, less than 576px) */
