@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
 import './MoviePage.scss';
@@ -26,8 +26,9 @@ const MoviePage = () => {
   const [hasError, setError] = useState(false);
   const location = useLocation();
 
+  // eslint-disable-next-line
   const movieService = new MovieService();
-  
+
   useEffect(() => {
     setLoading(true);
 
@@ -60,6 +61,7 @@ const MoviePage = () => {
     setLoading(false);
   };
 
+  // eslint-disable-next-line
   const onError = (error) => {
     console.log(error);
 
@@ -69,23 +71,23 @@ const MoviePage = () => {
 
   const renderContent = (movieData) => {
     return (
-      <div className='movie-page__grid'>
-        <div className='movie-page__grid_short left'>
+      <div className="movie-page__grid">
+        <div className="movie-page__grid_short left">
           <MoviePageHeader movieData={movieData} />
           <MoviePageAbout movieData={movieData} />
         </div>
 
-        <div className='movie-page__grid_short right'>
+        <div className="movie-page__grid_short right">
           <MoviePagePoster movieData={movieData} />
           <MoviePageRating movieData={movieData} />
         </div>
 
-        <div className='movie-page__grid_long'>
+        <div className="movie-page__grid_long">
           <MoviePageSimilar movieData={movieData} id={id} setId={setId} />
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const content = renderContent(movieData);
 
@@ -95,13 +97,13 @@ const MoviePage = () => {
 
   return (
     <ErrorBoundary>
-      <div className='movie-page container'>
+      <div className="movie-page container">
         {spinner}
         {error}
         {page}
       </div>
     </ErrorBoundary>
-  )
+  );
 };
 
 export default MoviePage;

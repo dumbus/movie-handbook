@@ -12,7 +12,7 @@ export const getMockupMoviesList = () => {
       posterUrl: null,
       countries: `countries${id}`,
       rating: 8.8
-    }
+    };
 
     moviesData.push(movieData);
   }
@@ -21,7 +21,7 @@ export const getMockupMoviesList = () => {
     total: 20,
     movieList: moviesData
   };
-}
+};
 
 export const getMockupMovie = () => {
   const similarMoviesData = [];
@@ -35,7 +35,7 @@ export const getMockupMovie = () => {
       rating: 8.8,
       year: 'similarYear',
       posterUrl: null
-    }
+    };
 
     similarMoviesData.push(similarMovie);
   }
@@ -61,7 +61,7 @@ export const getMockupMovie = () => {
     producers: 'producer',
     composers: 'composer',
     similarMovies: similarMoviesData
-  }
+  };
 
   return movieData;
 };
@@ -78,7 +78,7 @@ export const getMockupMovieBig = () => {
       rating: 8.8,
       year: 'similarYear',
       posterUrl: null
-    }
+    };
 
     similarMoviesData.push(similarMovie);
   }
@@ -88,9 +88,11 @@ export const getMockupMovieBig = () => {
   const movieData = {
     id: id,
     name: `${id} name${id} name${id} name${id} name`,
-    alternativeName: 'alternative name alternative namealternative namealternative namealternative name',
+    alternativeName:
+      'alternative name alternative namealternative namealternative namealternative name',
     year: 99999,
-    shortDescription: 'shortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescription',
+    shortDescription:
+      'shortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescriptionshortDescription',
     posterUrl: null,
     countries: 'countriescountriescountriescountriescountriescountries',
     rating: 8.8,
@@ -104,7 +106,7 @@ export const getMockupMovieBig = () => {
     producers: 'producerproducerproducerproducerproducerproducer',
     composers: 'composercomposercomposercomposercomposercomposer',
     similarMovies: similarMoviesData
-  }
+  };
 
   return movieData;
 };

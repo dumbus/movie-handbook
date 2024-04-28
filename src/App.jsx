@@ -10,18 +10,18 @@ import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 const App = () => {
   return (
     <Router>
-      <div className='app'>
+      <div className="app">
         <Header />
         <Routes>
-          <Route exact path='/' element={<MovieListPage />} />
-          <Route exact path='/movies' element={<MovieListPage />} />
-          <Route exact path='/movies/:baseId' element={<MoviePage />} />
-          <Route path='*' element={<NotFoundPage/> } />
+          <Route exact path="/" element={<MovieListPage />} />
+          <Route exact path="/movies" element={<MovieListPage />} />
+          <Route exact path="/movies/:baseId" element={<MoviePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />
       </div>
     </Router>
-  )
-}
+  );
+};
 
 export default App;

@@ -4,7 +4,6 @@ $star-empty: '../../../assets/icons/star-empty.svg';
 $star-filled: '../../../assets/icons/star-filled.svg';
 
 .movie-page__rating {
-  
   &_list {
     display: flex;
     margin-bottom: 0.5rem;
@@ -59,7 +58,6 @@ $star-filled: '../../../assets/icons/star-filled.svg';
 
 @media (max-width: 576.98px) {
   .movie-page__rating {
-
     &_item {
       width: 1.8rem;
     }

@@ -1,14 +1,16 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
 const Header = () => {
   return (
-    <header className='header'>
-      <div className='header__container container'>
-        <Link to='/'>
-          <div className='header__logo'>
-            <svg className='header__logo_svg'
+    <header className="header">
+      <div className="header__container container">
+        <Link to="/">
+          <div className="header__logo">
+            <svg
+              className="header__logo_svg"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -23,19 +25,19 @@ const Header = () => {
               <polyline points="17 2 12 7 7 2" />
             </svg>
 
-            <div className='header__logo_line' />
-            <div className='header__logo_text'>Энциклопедия кино</div>
+            <div className="header__logo_line" />
+            <div className="header__logo_text">Энциклопедия кино</div>
           </div>
         </Link>
 
-        <nav className='header__nav'>
-          <Link to='/'>
-            <span className='header__nav_link' >Главная</span>
+        <nav className="header__nav">
+          <Link to="/">
+            <span className="header__nav_link">Главная</span>
           </Link>
         </nav>
       </div>
     </header>
-  )
+  );
 };
 
 export default Header;

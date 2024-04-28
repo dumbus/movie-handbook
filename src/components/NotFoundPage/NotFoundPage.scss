@@ -59,16 +59,15 @@
   .error-message__back_button:hover {
     border: 2px solid $primary;
 
-      .error-message__back {
-
-        &_arrow {
-          left: 0;
-          color: $primary;
-        }
-        
-        &_text {
-          left: 15rem;
-        }
+    .error-message__back {
+      &_arrow {
+        left: 0;
+        color: $primary;
       }
+
+      &_text {
+        left: 15rem;
+      }
+    }
   }
 }

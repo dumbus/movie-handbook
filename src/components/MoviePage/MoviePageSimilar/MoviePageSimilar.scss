@@ -23,9 +23,8 @@
 
     &:hover {
       cursor: pointer;
-      
-      .movie-page__similar {
 
+      .movie-page__similar {
         &_poster {
           opacity: 0.7;
         }
@@ -62,7 +61,6 @@
 
 @media (max-width: 991.98px) {
   .movie-page__similar {
-
     &_list {
       gap: 0 0.5rem;
     }
@@ -71,7 +69,6 @@
 
 @media (max-width: 767.98px) {
   .movie-page__similar {
-
     &_list {
       grid-template-columns: repeat(3, 1fr);
     }
