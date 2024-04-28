@@ -102,7 +102,6 @@ class MovieService {
       id: movie.id,
       name: this._getName(movie),
       year: movie.year || null,
-      description: movie.description || 'Описание отсутствует',
       posterUrl: movie.poster.url || null,
       countries: movie.countries.map((obj) => obj.name).join(', '),
       rating: (movie.rating && movie.rating.kp) ? movie.rating.kp.toFixed(1) : 0

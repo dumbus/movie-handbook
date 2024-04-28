@@ -63,16 +63,17 @@ const MovieListPage = () => {
         year,
         posterUrl,
         countries,
-        rating 
+        rating
       } = itemData;
 
       return (
         <Link to={`/movies/${id}`} key={id}>
           <li className='movie-list__item' key={id}>
             <img className='movie-list__item_image' src={posterUrl || basePoster} alt={name} />
-            <div className='movie-list__item_rating'>{rating}</div>
+            
 
-            <div className='movie-list__item_description'>
+            <div className='movie-list__item_caption'>
+            <div className='movie-list__item_rating'>{rating}</div>
               <div className='movie-list__item_name'>{`${name} (${year})`}</div>
               <div className='movie-list__item_country'>{countries}</div>
             </div>

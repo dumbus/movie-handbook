@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MovieListPage from './components/MovieListPage/MovieListPage';
 import MoviePage from './components/MoviePage/MoviePage';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 const App = () => {
   return (
@@ -13,7 +14,9 @@ const App = () => {
         <Header />
         <Routes>
           <Route exact path='/' element={<MovieListPage />} />
+          <Route exect path='/movies' element={<MovieListPage />} />
           <Route exact path='/movies/:baseId' element={<MoviePage />} />
+          <Route path='*' element={<NotFoundPage/> } />
         </Routes>
         <Footer />
       </div>
