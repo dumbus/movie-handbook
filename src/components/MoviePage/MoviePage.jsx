@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import './MoviePage.scss';
 
@@ -24,9 +24,10 @@ const MoviePage = () => {
   const [movieData, setMovieData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
+  const location = useLocation();
 
   const movieService = new MovieService();
-
+  
   useEffect(() => {
     setLoading(true);
 
@@ -34,17 +35,28 @@ const MoviePage = () => {
     onRequest(id);
   }, [id]);
 
+  useEffect(() => {
+    const pathParts = location.pathname.split('/');
+    const movieId = parseInt(pathParts[pathParts.length - 1]);
+
+    setId(movieId);
+  }, [location.pathname]);
+
+  // useEffect(() => {
+  //   const newId = 
+  // }, [location.pathname]);
+
   const onRequest = (id) => {
     // =========== for local testing ===========
-    setTimeout(() => {
-      const mockupMovieData = getMockupMovie(id);
-      onMovieDataLoaded(mockupMovieData);
-    }, 1000);
+    // setTimeout(() => {
+    //   const mockupMovieData = getMockupMovie(id);
+    //   onMovieDataLoaded(mockupMovieData);
+    // }, 1000);
     // =========================================
 
-    // movieService.getMovieById(id)
-    //   .then(onMovieDataLoaded)
-    //   .catch(onError);
+    movieService.getMovieById(id)
+      .then(onMovieDataLoaded)
+      .catch(onError);
   };
 
   const onMovieDataLoaded = (movieData) => {
@@ -73,7 +85,7 @@ const MoviePage = () => {
         </div>
 
         <div className='movie-page__grid_long'>
-          <MoviePageSimilar movieData={movieData} setId={setId} />
+          <MoviePageSimilar movieData={movieData} id={id} setId={setId} />
         </div>
       </div>
     )

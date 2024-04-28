@@ -5,7 +5,7 @@ export const getMockupMoviesList = () => {
     const id = Math.random() * 1000;
 
     const movieData = {
-      id: Math.random() * 1000,
+      id: id,
       name: `name${id}`,
       year: `year${id}`,
       description: `description${id}`,

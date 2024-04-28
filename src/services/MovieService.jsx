@@ -2,7 +2,8 @@ class MovieService {
   _apiBaseUrl = 'https://api.kinopoisk.dev/v1.4/';
   // _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
   // _apiKey = 'HG1DEST-BT748Z3-QHR2SN7-HKGPA9B';
-  _apiKey = 'S88RBF0-CGFM9AT-PP6890E-VCQA8HT';
+  // _apiKey = 'S88RBF0-CGFM9AT-PP6890E-VCQA8HT';
+  _apiKey = '6N51YFF-22XM09R-PWXCGXS-P8PE2G6';
   _fetchOptions = {
     method: 'GET',
     headers: {
