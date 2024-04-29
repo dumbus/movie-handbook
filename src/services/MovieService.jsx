@@ -61,7 +61,7 @@ class MovieService {
   }
 
   _getBudget(movie) {
-    if (movie.budget.value && movie.budget.currency) {
+    if (movie.budget && movie.budget.value && movie.budget.currency) {
       return `${movie.budget.currency}${movie.budget.value}`;
     }
 
@@ -81,6 +81,10 @@ class MovieService {
   }
 
   _getPersons(movie, profession) {
+    if (!movie.persons) {
+      return '-';
+    }
+
     const result = movie.persons
       .filter((person) => {
         if (
@@ -124,7 +128,9 @@ class MovieService {
       name: this._getName(movie),
       year: movie.year || 'год неизестен',
       posterUrl: movie.poster ? movie.poster.url : null,
-      countries: movie.countries.map((obj) => obj.name).join(', '),
+      countries: movie.countries
+        ? movie.countries.map((obj) => obj.name).join(', ')
+        : 'страна неизвестна',
       rating: movie.rating && movie.rating.kp ? movie.rating.kp.toFixed(1) : 0
     };
   };
@@ -137,14 +143,18 @@ class MovieService {
       year: movie.year || 'год неизестен',
       shortDescription: movie.shortDescription || null,
       posterUrl: movie.poster ? movie.poster.url : null,
-      countries: movie.countries.map((obj) => obj.name).join(', '),
+      countries: movie.countries
+        ? movie.countries.map((obj) => obj.name).join(', ')
+        : 'страна неизвестна',
       rating: movie.rating && movie.rating.kp ? movie.rating.kp.toFixed(1) : 0,
       slogan: movie.slogan || '-',
       budget: this._getBudget(movie),
       fees: this._getFees(movie),
       movieLength: movie.movieLength ? `${movie.movieLength} мин.` : '-',
       ageRating: movie.ageRating ? `${movie.ageRating}+` : '-',
-      genres: movie.genres.map((obj) => obj.name).join(', '),
+      genres: movie.genres
+        ? movie.genres.map((obj) => obj.name).join(', ')
+        : '-',
       directors: this._getPersons(movie, 'director'),
       producers: this._getPersons(movie, 'producer'),
       composers: this._getPersons(movie, 'composer'),
