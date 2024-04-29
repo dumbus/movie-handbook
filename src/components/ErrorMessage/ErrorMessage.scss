@@ -1,0 +1,52 @@
+.error-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  min-height: 0;
+
+  &__image {
+    max-height: 100%;
+    width: 15rem;
+    height: 15rem;
+    animation: pulsing 2s ease-in-out infinite;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+}
+
+@keyframes pulsing {
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  0% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .error-message {
+    &__image {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .error-message {
+    &__image {
+      width: 10rem;
+      height: 10rem;
+    }
+  }
+}
