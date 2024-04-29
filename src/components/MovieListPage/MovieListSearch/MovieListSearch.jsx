@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './MovieListSearch.scss';
 
-const MovieListSearch = ({ setLoading, setPageSettings }) => {
+import { useGlobalState } from '../../../context/GlobalStateContext';
+
+const MovieListSearch = () => {
+  const { pageSettings, setPageSettings, setLoading } = useGlobalState();
+  const { searchQuery } = pageSettings;
+
   const [showAlert, setShowAlert] = useState(false);
   const [searchName, setSearchName] = useState(
     localStorage.getItem('search-name') || ''
   );
+
+  useEffect(() => {
+    setSearchName(searchQuery);
+  }, [searchQuery]);
 
   const handleChange = (event) => {
     const { value } = event.target;

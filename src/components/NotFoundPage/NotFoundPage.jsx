@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 
 import './NotFoundPage.scss';
 
+import { useGlobalState } from '../../context/GlobalStateContext';
+
 import notFound from '../../assets/icons/not-found.svg';
 
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const NotFoundPage = () => {
+  const { resetPageSettings } = useGlobalState();
+
   const renderContent = () => {
     return (
       <>
@@ -17,7 +21,11 @@ const NotFoundPage = () => {
           <div className="error-message__title title">
             Пока что здесь ничего нет...
           </div>
-          <Link to={'/'} className="error-message__back_link">
+          <Link
+            to={'/'}
+            onClick={resetPageSettings}
+            className="error-message__back_link"
+          >
             <button className="error-message__back_button">
               <div className="error-message__back_arrow">{'<<'}</div>
 

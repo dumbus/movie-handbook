@@ -2,7 +2,25 @@ import React from 'react';
 
 import './Paginator.scss';
 
-const Paginator = ({ page, isLoading, onPageSwitch, pages }) => {
+import { useGlobalState } from '../../context/GlobalStateContext';
+
+const Paginator = ({ pages }) => {
+  const { pageSettings, setPageSettings, isLoading, setLoading } =
+    useGlobalState();
+  const { page } = pageSettings;
+
+  const onPageSwitch = (offset) => {
+    window.scrollTo(0, 0);
+    setLoading(true);
+
+    localStorage.setItem('pagination-page', page + offset);
+
+    setPageSettings((prevPageSettings) => ({
+      ...prevPageSettings,
+      page: prevPageSettings.page + offset
+    }));
+  };
+
   return (
     <div className="paginator">
       <button

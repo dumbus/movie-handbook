@@ -3,6 +3,8 @@ import { useParams, useLocation } from 'react-router-dom';
 
 import './MoviePage.scss';
 
+import { useGlobalState } from '../../context/GlobalStateContext';
+
 import MovieService from '../../services/MovieService';
 
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -18,11 +20,11 @@ import MoviePageSimilar from './MoviePageSimilar/MoviePageSimilar';
 import { getMockupMovie } from '../../utils/getMockupData';
 
 const MoviePage = () => {
+  const { isLoading, setLoading } = useGlobalState();
   const { baseId } = useParams();
 
   const [id, setId] = useState(baseId);
   const [movieData, setMovieData] = useState([]);
-  const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
   const location = useLocation();
 

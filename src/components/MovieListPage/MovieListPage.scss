@@ -8,6 +8,8 @@
   width: 100%;
 
   &__title {
+    color: $primary-dark;
+    font-style: italic;
     font-size: 2rem;
     text-align: center;
   }
@@ -133,12 +135,6 @@
   .movie-list {
     &__title {
       font-size: 1.5rem;
-    }
-
-    &__search {
-      &_title {
-        font-size: 1rem;
-      }
     }
 
     &__list {

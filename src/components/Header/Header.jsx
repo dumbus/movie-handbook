@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
+import { useGlobalState } from '../../context/GlobalStateContext';
+
 const Header = () => {
+  const { resetPageSettings } = useGlobalState();
+
   return (
     <header className="header">
       <div className="header__container container">
-        <Link to="/">
+        <Link to="/" onClick={resetPageSettings}>
           <div className="header__logo">
             <svg
               className="header__logo_svg"
@@ -31,7 +35,7 @@ const Header = () => {
         </Link>
 
         <nav className="header__nav">
-          <Link to="/">
+          <Link to="/" onClick={resetPageSettings}>
             <span className="header__nav_link">Главная</span>
           </Link>
         </nav>

@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import './MovieListPage.scss';
 
 import posterTemplate from '../../assets/poster.webp';
+import errorImage from '../../assets/icons/error.svg';
+
+import { useGlobalState } from '../../context/GlobalStateContext';
 
 import MovieService from '../../services/MovieService';
 
@@ -21,95 +24,68 @@ import {
 } from '../../utils/getMockupData';
 
 const MovieListPage = () => {
+  const { pageSettings, isLoading, setLoading } = useGlobalState();
+  const { listType, page, searchQuery } = pageSettings;
+
   const [movieList, setMovieList] = useState([]);
-  const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
   const [pages, setPages] = useState(null);
-  // const [listType, setListType] = useState(
-  //   localStorage.getItem('list-type') || 'default'
-  // );
-  // const [page, setPage] = useState(
-  //   Number(localStorage.getItem('pagination-page')) || 1
-  // );
-  // const [searchQuery, setSearchQuery] = useState(
-  //   localStorage.getItem('search-query') || ''
-  // );
-  const [pageSettings, setPageSettings] = useState({
-    listType: localStorage.getItem('list-type') || 'default',
-    page: Number(localStorage.getItem('pagination-page')) || 1,
-    searchQuery: localStorage.getItem('search-query') || ''
-  });
 
   // eslint-disable-next-line
   const movieService = new MovieService();
 
   useEffect(() => {
-    console.log('effected');
+    setLoading(true);
+
     window.scrollTo(0, 0);
-    onRequest(pageSettings.listType);
+    onRequest(listType);
   }, [pageSettings]);
 
+  // eslint-disable-next-line
   const onRequest = (type) => {
     switch (type) {
       case 'default':
         // =========== for local testing ===========
-        // setTimeout(() => {
-        //   const mockupData = getMockupMoviesList();
-        //   onMoviesListLoaded(mockupData);
-        // }, 1000);
+        setTimeout(() => {
+          const mockupData = getMockupMoviesList();
+          onMoviesListLoaded(mockupData);
+        }, 1000);
         // =========================================
 
-        movieService
-          .getMovies(pageSettings.page)
-          .then(onMoviesListLoaded)
-          .catch(onError);
+        // movieService
+        //   .getMovies(page)
+        //   .then(onMoviesListLoaded)
+        //   .catch(onError);
         break;
 
       case 'search':
         // =========== for local testing ===========
-        // setTimeout(() => {
-        //   const mockupData = getMockupMoviesListByName(
-        //     pageSettings.searchQuery
-        //   );
-        //   onMoviesListLoaded(mockupData);
-        // }, 1000);
+        setTimeout(() => {
+          const mockupData = getMockupMoviesListByName(searchQuery);
+          onMoviesListLoaded(mockupData);
+        }, 1000);
         // =========================================
 
-        movieService
-          .getMoviesByName(pageSettings.searchQuery, pageSettings.page)
-          .then(onMoviesListLoaded)
-          .catch(onError);
+        // movieService
+        //   .getMoviesByName(searchQuery, page)
+        //   .then(onMoviesListLoaded)
+        //   .catch(onError);
         break;
 
       default:
         // =========== for local testing ===========
-        // setTimeout(() => {
-        //   const mockupData = getMockupMoviesList();
-        //   onMoviesListLoaded(mockupData);
-        // }, 1000);
+        setTimeout(() => {
+          const mockupData = getMockupMoviesList();
+          onMoviesListLoaded(mockupData);
+        }, 1000);
         // =========================================
 
-        movieService
-          .getMovies(pageSettings.page)
-          .then(onMoviesListLoaded)
-          .catch(onError);
+        // movieService
+        //   .getMovies(page)
+        //   .then(onMoviesListLoaded)
+        //   .catch(onError);
         break;
     }
-
-    // if (type === 'default') {
-    // } else if (type === 'search') {
-    //   // =========== for local testing ===========
-    //   // setTimeout(() => {
-    //   //   const mockupData = getMockupMoviesListByName(searchQuery);
-    //   //   onMoviesListLoaded(mockupData);
-    //   // }, 1000);
-    //   // =========================================
-
-    //   movieService
-    //     .getMoviesByName(searchQuery, page)
-    //     .then(onMoviesListLoaded)
-    //     .catch(onError);
-    // }
   };
 
   const onMoviesListLoaded = ({ pages, movieList }) => {
@@ -124,18 +100,6 @@ const MovieListPage = () => {
 
     setError(true);
     setLoading(false);
-  };
-
-  const onPageSwitch = (offset) => {
-    window.scrollTo(0, 0);
-    setLoading(true);
-
-    localStorage.setItem('pagination-page', pageSettings.page + offset);
-
-    setPageSettings((prevPageSettings) => ({
-      ...prevPageSettings,
-      page: prevPageSettings.page + offset
-    }));
   };
 
   const renderMovieList = (itemsData) => {
@@ -170,21 +134,47 @@ const MovieListPage = () => {
       );
     });
 
+    if (!listItems.length) {
+      const errorContent = (
+        <div className="error-message">
+          <img
+            className="error-message__image"
+            src={errorImage}
+            alt="error-image"
+          />
+
+          <div className="error-message__title">
+            По вашему запросу ничего не нашлось....
+          </div>
+        </div>
+      );
+
+      return <ErrorMessage content={errorContent} />;
+    }
+
     return (
       <>
         <ul className="movie-list__list">{listItems}</ul>
 
-        <Paginator
-          page={pageSettings.page}
-          isLoading={isLoading}
-          onPageSwitch={onPageSwitch}
-          pages={pages}
-        />
+        <Paginator pages={pages} />
       </>
     );
   };
 
+  const renderListTitle = (listType) => {
+    if (listType === 'search') {
+      return (
+        <h2 className="movie-list__subtitle title">{`Список фильмов по запросу ${searchQuery}`}</h2>
+      );
+    }
+
+    return (
+      <h2 className="movie-list__subtitle title">Список лучших фильмов</h2>
+    );
+  };
+
   const list = renderMovieList(movieList);
+  const listTitle = renderListTitle(listType);
 
   const error = hasError ? <ErrorMessage /> : null;
   const spinner = isLoading ? <Spinner /> : null;
@@ -193,14 +183,11 @@ const MovieListPage = () => {
   return (
     <ErrorBoundary>
       <div className="movie-list container">
-        <h2 className="movie-list__title title">Список фильмов</h2>
-        <h3 className="movie-list__subtitle title">{`Текущая страница: ${pageSettings.page}`}</h3>
+        <h1 className="movie-list__title title">Энциклопедия кино</h1>
+        {listTitle}
+        <h3 className="movie-list__subtitle title">{`Текущая страница: ${page}`}</h3>
 
-        <MovieListSearch
-          setLoading={setLoading}
-          setPageSettings={setPageSettings}
-        />
-
+        <MovieListSearch />
         {spinner}
         {error}
         {content}
