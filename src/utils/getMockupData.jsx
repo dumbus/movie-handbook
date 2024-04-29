@@ -18,7 +18,7 @@ export const getMockupMoviesList = () => {
   }
 
   return {
-    pages: 20,
+    pages: 7,
     movieList: moviesData
   };
 };
@@ -43,7 +43,7 @@ export const getMockupMoviesListByName = (name) => {
   }
 
   return {
-    pages: 5,
+    pages: 10,
     total: 240,
     movieList: moviesData
   };
