@@ -23,6 +23,32 @@ export const getMockupMoviesList = () => {
   };
 };
 
+export const getMockupMoviesListByName = (name) => {
+  const moviesData = [];
+
+  for (let i = 0; i < 12; i++) {
+    const id = Math.random() * 1000;
+
+    const movieData = {
+      id: id,
+      name: `${name}${id}`,
+      year: `${name}${id}`,
+      description: `${name}${id}`,
+      posterUrl: null,
+      countries: `${name}${id}`,
+      rating: 8.8
+    };
+
+    moviesData.push(movieData);
+  }
+
+  return {
+    pages: 20,
+    total: 240,
+    movieList: moviesData
+  };
+};
+
 export const getMockupMovie = () => {
   const similarMoviesData = [];
 

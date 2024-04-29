@@ -23,9 +23,9 @@ class MovieService {
     return await response.json();
   };
 
-  getMovies = async (page = 1, limit = 12) => {
+  getMovies = async (page = 1) => {
     const raw = await this.getResource(
-      `${this._apiBaseUrl}movie?page=${page}&limit=${limit}`
+      `${this._apiBaseUrl}movie?page=${page}&limit=12`
     );
 
     return {
@@ -37,7 +37,19 @@ class MovieService {
   getMovieById = async (id) => {
     const raw = await this.getResource(`${this._apiBaseUrl}movie/${id}`);
 
-    return this._transformMovieFull(raw);
+    return this._transformMovie(raw);
+  };
+
+  getMoviesByName = async (name, page = 1) => {
+    const raw = await this.getResource(
+      `${this._apiBaseUrl}movie/search?page=${page}&limit=12&query=${name}`
+    );
+
+    return {
+      total: raw.total,
+      pages: raw.pages,
+      movieList: raw.docs.map((item) => this._transformMovie(item))
+    };
   };
 
   _getName(movie) {
