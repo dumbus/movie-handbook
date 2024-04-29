@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './MoviePageSimilar.scss';
 
-import basePoster from '../../../assets/poster.webp';
+import posterTemplate from '../../../assets/poster.webp';
 
 const MoviePageSimilar = ({ movieData }) => {
   const { similarMovies } = movieData;
@@ -22,11 +22,20 @@ const MoviePageSimilar = ({ movieData }) => {
           className="movie-page__similar_item"
           key={id}
         >
-          <img
-            className="movie-page__similar_poster"
-            src={posterUrl || basePoster}
-            alt={name}
-          />
+          <div className="movie-page__similar_poster">
+            <div className="movie-page__similar_poster-wrapper">
+              <img
+                className="movie-page__similar_poster-image movie-page__similar_poster-placeholder"
+                src={posterTemplate}
+                alt={name}
+              />
+              <img
+                className="movie-page__similar_poster-image"
+                src={posterUrl || posterTemplate}
+                alt={name}
+              />
+            </div>
+          </div>
 
           <div className="movie-page__similar_description">
             <div className="movie-page__similar_rating">{rating}</div>
