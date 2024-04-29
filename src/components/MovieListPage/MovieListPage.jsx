@@ -7,12 +7,14 @@ import posterTemplate from '../../assets/poster.webp';
 
 import MovieService from '../../services/MovieService';
 
+import MovieListSearch from './MovieListSearch/MovieListSearch';
 import Paginator from '../Paginator/Paginator';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Spinner from '../Spinner/Spinner';
 
 import {
+  // eslint-disable-next-line
   getMockupMoviesList,
   // eslint-disable-next-line
   getMockupMoviesListByName
@@ -23,66 +25,74 @@ const MovieListPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
   const [pages, setPages] = useState(null);
-  const [listType, setListType] = useState(
-    localStorage.getItem('list-type') || 'default'
-  );
-  const [page, setPage] = useState(
-    Number(localStorage.getItem('pagination-page')) || 1
-  );
-  const [searchName, setSearchName] = useState(
-    localStorage.getItem('search-name') || ''
-  );
-  const [searchQuery, setSearchQuery] = useState(
-    localStorage.getItem('search-query') || ''
-  );
+  // const [listType, setListType] = useState(
+  //   localStorage.getItem('list-type') || 'default'
+  // );
+  // const [page, setPage] = useState(
+  //   Number(localStorage.getItem('pagination-page')) || 1
+  // );
+  // const [searchQuery, setSearchQuery] = useState(
+  //   localStorage.getItem('search-query') || ''
+  // );
+  const [pageSettings, setPageSettings] = useState({
+    listType: localStorage.getItem('list-type') || 'default',
+    page: Number(localStorage.getItem('pagination-page')) || 1,
+    searchQuery: localStorage.getItem('search-query') || ''
+  });
 
   // eslint-disable-next-line
   const movieService = new MovieService();
 
   useEffect(() => {
-    onRequest(listType);
-  }, [page, searchQuery]);
+    console.log('effected');
+    window.scrollTo(0, 0);
+    onRequest(pageSettings.listType);
+  }, [pageSettings]);
 
   const onRequest = (type) => {
     switch (type) {
       case 'default':
         // =========== for local testing ===========
-        setTimeout(() => {
-          const mockupData = getMockupMoviesList();
-          onMoviesListLoaded(mockupData);
-        }, 1000);
+        // setTimeout(() => {
+        //   const mockupData = getMockupMoviesList();
+        //   onMoviesListLoaded(mockupData);
+        // }, 1000);
         // =========================================
 
-        // movieService.getMovies(page)
-        //   .then(onMoviesListLoaded)
-        //   .catch(onError);
+        movieService
+          .getMovies(pageSettings.page)
+          .then(onMoviesListLoaded)
+          .catch(onError);
         break;
 
       case 'search':
         // =========== for local testing ===========
-        setTimeout(() => {
-          const mockupData = getMockupMoviesListByName(searchQuery);
-          onMoviesListLoaded(mockupData);
-        }, 1000);
+        // setTimeout(() => {
+        //   const mockupData = getMockupMoviesListByName(
+        //     pageSettings.searchQuery
+        //   );
+        //   onMoviesListLoaded(mockupData);
+        // }, 1000);
         // =========================================
 
-        // movieService
-        //   .getMoviesByName(searchQuery, page)
-        //   .then(onMoviesListLoaded)
-        //   .catch(onError);
+        movieService
+          .getMoviesByName(pageSettings.searchQuery, pageSettings.page)
+          .then(onMoviesListLoaded)
+          .catch(onError);
         break;
 
       default:
         // =========== for local testing ===========
-        setTimeout(() => {
-          const mockupData = getMockupMoviesList();
-          onMoviesListLoaded(mockupData);
-        }, 1000);
+        // setTimeout(() => {
+        //   const mockupData = getMockupMoviesList();
+        //   onMoviesListLoaded(mockupData);
+        // }, 1000);
         // =========================================
 
-        // movieService.getMovies(page)
-        //   .then(onMoviesListLoaded)
-        //   .catch(onError);
+        movieService
+          .getMovies(pageSettings.page)
+          .then(onMoviesListLoaded)
+          .catch(onError);
         break;
     }
 
@@ -120,29 +130,12 @@ const MovieListPage = () => {
     window.scrollTo(0, 0);
     setLoading(true);
 
-    localStorage.setItem('pagination-page', page + offset);
-    setPage((page) => page + offset);
-  };
+    localStorage.setItem('pagination-page', pageSettings.page + offset);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    window.scrollTo(0, 0);
-    setLoading(true);
-
-    localStorage.setItem('list-type', 'search');
-    localStorage.setItem('pagination-page', 1);
-    localStorage.setItem('search-query', searchName);
-    localStorage.setItem('search-name', searchName);
-
-    setListType('search');
-    setPage(1);
-    setSearchQuery(searchName);
-  };
-
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setSearchName(value);
+    setPageSettings((prevPageSettings) => ({
+      ...prevPageSettings,
+      page: prevPageSettings.page + offset
+    }));
   };
 
   const renderMovieList = (itemsData) => {
@@ -182,7 +175,7 @@ const MovieListPage = () => {
         <ul className="movie-list__list">{listItems}</ul>
 
         <Paginator
-          page={page}
+          page={pageSettings.page}
           isLoading={isLoading}
           onPageSwitch={onPageSwitch}
           pages={pages}
@@ -201,24 +194,12 @@ const MovieListPage = () => {
     <ErrorBoundary>
       <div className="movie-list container">
         <h2 className="movie-list__title title">Список фильмов</h2>
-        <h3 className="movie-list__subtitle title">{`Текущая страница: ${page}`}</h3>
+        <h3 className="movie-list__subtitle title">{`Текущая страница: ${pageSettings.page}`}</h3>
 
-        <div className="movie-list__search block">
-          <h4 className="movie-list__search_title title">Поиск по названию:</h4>
-
-          <div className="movie-list__search_settings">
-            <form className="movie-list__search__form" onSubmit={handleSubmit}>
-              <input
-                className="movie-list__search_input"
-                name="searchName"
-                type="text"
-                placeholder="Название фильма"
-                onChange={handleChange}
-                value={searchName}
-              />
-            </form>
-          </div>
-        </div>
+        <MovieListSearch
+          setLoading={setLoading}
+          setPageSettings={setPageSettings}
+        />
 
         {spinner}
         {error}
