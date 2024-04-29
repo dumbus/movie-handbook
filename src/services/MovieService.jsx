@@ -1,10 +1,6 @@
 class MovieService {
   _apiBaseUrl = 'https://api.kinopoisk.dev/v1.4/';
-  // _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
-  // _apiKey = 'HG1DEST-BT748Z3-QHR2SN7-HKGPA9B';
-  // _apiKey = 'S88RBF0-CGFM9AT-PP6890E-VCQA8HT';
-  // _apiKey = '6N51YFF-22XM09R-PWXCGXS-P8PE2G6';
-  _apiKey = 'AFN4TNJ-0V8MG0X-NSE5PMR-TWG4PNY';
+  _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
   _fetchOptions = {
     method: 'GET',
     headers: {
@@ -37,7 +33,7 @@ class MovieService {
   getMovieById = async (id) => {
     const raw = await this.getResource(`${this._apiBaseUrl}movie/${id}`);
 
-    return this._transformMovie(raw);
+    return this._transformMovieFull(raw);
   };
 
   getMoviesByName = async (name, page = 1) => {
@@ -114,8 +110,8 @@ class MovieService {
           similarMovie.rating && similarMovie.rating.kp
             ? similarMovie.rating.kp.toFixed(1)
             : 0,
-        year: similarMovie.year || null,
-        posterUrl: similarMovie.poster.url || null
+        year: similarMovie.year || 'год неизестен',
+        posterUrl: similarMovie.poster ? similarMovie.poster.url : null
       };
     });
 
@@ -126,8 +122,8 @@ class MovieService {
     return {
       id: movie.id,
       name: this._getName(movie),
-      year: movie.year || null,
-      posterUrl: movie.poster.url || null,
+      year: movie.year || 'год неизестен',
+      posterUrl: movie.poster ? movie.poster.url : null,
       countries: movie.countries.map((obj) => obj.name).join(', '),
       rating: movie.rating && movie.rating.kp ? movie.rating.kp.toFixed(1) : 0
     };
@@ -138,21 +134,24 @@ class MovieService {
       id: movie.id,
       name: this._getName(movie),
       alternativeName: movie.alternativeName || null,
-      year: movie.year || null,
+      year: movie.year || 'год неизестен',
       shortDescription: movie.shortDescription || null,
-      posterUrl: movie.poster.url || null,
+      posterUrl: movie.poster ? movie.poster.url : null,
       countries: movie.countries.map((obj) => obj.name).join(', '),
       rating: movie.rating && movie.rating.kp ? movie.rating.kp.toFixed(1) : 0,
       slogan: movie.slogan || '-',
       budget: this._getBudget(movie),
       fees: this._getFees(movie),
-      movieLength: movie.movieLength || '-',
-      ageRating: `${movie.ageRating}+` || '-',
+      movieLength: movie.movieLength ? `${movie.movieLength} мин.` : '-',
+      ageRating: movie.ageRating ? `${movie.ageRating}+` : '-',
       genres: movie.genres.map((obj) => obj.name).join(', '),
       directors: this._getPersons(movie, 'director'),
       producers: this._getPersons(movie, 'producer'),
       composers: this._getPersons(movie, 'composer'),
-      similarMovies: movie.similarMovies ? this._getSimilarMovies(movie) : null
+      similarMovies:
+        movie.similarMovies && movie.similarMovies.length
+          ? this._getSimilarMovies(movie)
+          : null
     };
   };
 }

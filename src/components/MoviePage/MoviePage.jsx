@@ -17,8 +17,6 @@ import MoviePagePoster from './MoviePagePoster/MoviePagePoster';
 import MoviePageRating from './MoviePageRating/MoviePageRating';
 import MoviePageSimilar from './MoviePageSimilar/MoviePageSimilar';
 
-import { getMockupMovie } from '../../utils/getMockupData';
-
 const MoviePage = () => {
   const { isLoading, setLoading } = useGlobalState();
   const { baseId } = useParams();
@@ -28,7 +26,6 @@ const MoviePage = () => {
   const [hasError, setError] = useState(false);
   const location = useLocation();
 
-  // eslint-disable-next-line
   const movieService = new MovieService();
 
   useEffect(() => {
@@ -46,16 +43,7 @@ const MoviePage = () => {
   }, [location.pathname]);
 
   const onRequest = (id) => {
-    // =========== for local testing ===========
-    setTimeout(() => {
-      const mockupMovieData = getMockupMovie(id);
-      onMovieDataLoaded(mockupMovieData);
-    }, 1000);
-    // =========================================
-
-    // movieService.getMovieById(id)
-    //   .then(onMovieDataLoaded)
-    //   .catch(onError);
+    movieService.getMovieById(id).then(onMovieDataLoaded).catch(onError);
   };
 
   const onMovieDataLoaded = (movieData) => {
@@ -63,7 +51,6 @@ const MoviePage = () => {
     setLoading(false);
   };
 
-  // eslint-disable-next-line
   const onError = (error) => {
     console.log(error);
 

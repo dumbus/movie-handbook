@@ -16,13 +16,6 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 import Spinner from '../Spinner/Spinner';
 
-import {
-  // eslint-disable-next-line
-  getMockupMoviesList,
-  // eslint-disable-next-line
-  getMockupMoviesListByName
-} from '../../utils/getMockupData';
-
 const MovieListPage = () => {
   const { pageSettings, isLoading, setLoading } = useGlobalState();
   const { listType, page, searchQuery } = pageSettings;
@@ -31,7 +24,6 @@ const MovieListPage = () => {
   const [hasError, setError] = useState(false);
   const [pages, setPages] = useState(null);
 
-  // eslint-disable-next-line
   const movieService = new MovieService();
 
   useEffect(() => {
@@ -44,39 +36,18 @@ const MovieListPage = () => {
   const onRequest = (type) => {
     switch (type) {
       case 'default':
-        // =========== for local testing ===========
-        setTimeout(() => {
-          const mockupData = getMockupMoviesList();
-          onMoviesListLoaded(mockupData);
-        }, 1000);
-        // =========================================
-
-        // movieService.getMovies(page).then(onMoviesListLoaded).catch(onError);
+        movieService.getMovies(page).then(onMoviesListLoaded).catch(onError);
         break;
 
       case 'search':
-        // =========== for local testing ===========
-        setTimeout(() => {
-          const mockupData = getMockupMoviesListByName(searchQuery);
-          onMoviesListLoaded(mockupData);
-        }, 1000);
-        // =========================================
-
-        // movieService
-        //   .getMoviesByName(searchQuery, page)
-        //   .then(onMoviesListLoaded)
-        //   .catch(onError);
+        movieService
+          .getMoviesByName(searchQuery, page)
+          .then(onMoviesListLoaded)
+          .catch(onError);
         break;
 
       default:
-        // =========== for local testing ===========
-        setTimeout(() => {
-          const mockupData = getMockupMoviesList();
-          onMoviesListLoaded(mockupData);
-        }, 1000);
-        // =========================================
-
-        // movieService.getMovies(page).then(onMoviesListLoaded).catch(onError);
+        movieService.getMovies(page).then(onMoviesListLoaded).catch(onError);
         break;
     }
   };
@@ -87,7 +58,6 @@ const MovieListPage = () => {
     setLoading(false);
   };
 
-  // eslint-disable-next-line
   const onError = (error) => {
     console.log(error);
 
@@ -101,7 +71,7 @@ const MovieListPage = () => {
 
       return (
         <Link to={`/movies/${id}`} key={id}>
-          <li className="movie-list__item" key={id}>
+          <li className="movie-list__item">
             <div className="movie-list__item_poster">
               <div className="movie-list__item_poster-wrapper">
                 <img
