@@ -13,7 +13,7 @@ const Paginator = ({ pages }) => {
     window.scrollTo(0, 0);
     setLoading(true);
 
-    localStorage.setItem('pagination-page', page + offset);
+    sessionStorage.setItem('pagination-page', page + offset);
 
     setPageSettings((prevPageSettings) => ({
       ...prevPageSettings,

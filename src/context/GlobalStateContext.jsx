@@ -6,9 +6,9 @@ export const useGlobalState = () => useContext(GlobalStateContext);
 
 export const GlobalStateProvider = ({ children }) => {
   const [pageSettings, setPageSettings] = useState({
-    listType: localStorage.getItem('list-type') || 'default',
-    page: Number(localStorage.getItem('pagination-page')) || 1,
-    searchQuery: localStorage.getItem('search-query') || ''
+    listType: sessionStorage.getItem('list-type') || 'default',
+    page: Number(sessionStorage.getItem('pagination-page')) || 1,
+    searchQuery: sessionStorage.getItem('search-query') || ''
   });
 
   const [isLoading, setLoading] = useState(true);
@@ -16,10 +16,10 @@ export const GlobalStateProvider = ({ children }) => {
   const resetPageSettings = () => {
     setLoading(true);
 
-    localStorage.setItem('list-type', 'default');
-    localStorage.setItem('pagination-page', 1);
-    localStorage.setItem('search-query', '');
-    localStorage.setItem('search-name', '');
+    sessionStorage.setItem('list-type', 'default');
+    sessionStorage.setItem('pagination-page', 1);
+    sessionStorage.setItem('search-query', '');
+    sessionStorage.setItem('search-name', '');
 
     setPageSettings({
       listType: 'default',

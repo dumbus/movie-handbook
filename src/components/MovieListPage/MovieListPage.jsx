@@ -41,7 +41,6 @@ const MovieListPage = () => {
     onRequest(listType);
   }, [pageSettings]);
 
-  // eslint-disable-next-line
   const onRequest = (type) => {
     switch (type) {
       case 'default':
@@ -52,10 +51,7 @@ const MovieListPage = () => {
         }, 1000);
         // =========================================
 
-        // movieService
-        //   .getMovies(page)
-        //   .then(onMoviesListLoaded)
-        //   .catch(onError);
+        // movieService.getMovies(page).then(onMoviesListLoaded).catch(onError);
         break;
 
       case 'search':
@@ -80,10 +76,7 @@ const MovieListPage = () => {
         }, 1000);
         // =========================================
 
-        // movieService
-        //   .getMovies(page)
-        //   .then(onMoviesListLoaded)
-        //   .catch(onError);
+        // movieService.getMovies(page).then(onMoviesListLoaded).catch(onError);
         break;
     }
   };

@@ -10,7 +10,7 @@ const MovieListSearch = () => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [searchName, setSearchName] = useState(
-    localStorage.getItem('search-name') || ''
+    sessionStorage.getItem('search-name') || ''
   );
 
   useEffect(() => {
@@ -32,10 +32,10 @@ const MovieListSearch = () => {
       window.scrollTo(0, 0);
       setLoading(true);
 
-      localStorage.setItem('list-type', 'search');
-      localStorage.setItem('pagination-page', 1);
-      localStorage.setItem('search-query', searchName);
-      localStorage.setItem('search-name', searchName);
+      sessionStorage.setItem('list-type', 'search');
+      sessionStorage.setItem('pagination-page', 1);
+      sessionStorage.setItem('search-query', searchName);
+      sessionStorage.setItem('search-name', searchName);
 
       setPageSettings((prevPageSettings) => ({
         ...prevPageSettings,
