@@ -17,6 +17,10 @@ const MovieListSearch = () => {
     setSearchName(searchQuery);
   }, [searchQuery]);
 
+  useEffect(() => {
+    setShowAlert(false);
+  }, [pageSettings]);
+
   const handleChange = (event) => {
     const { value } = event.target;
     setSearchName(value);
