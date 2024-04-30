@@ -69,6 +69,8 @@ const MovieListPage = () => {
     const listItems = itemsData.map((itemData) => {
       const { id, name, year, posterUrl, countries, rating } = itemData;
 
+      if (!id) return;
+
       return (
         <Link to={`/movies/${id}`} key={id}>
           <li className="movie-list__item">

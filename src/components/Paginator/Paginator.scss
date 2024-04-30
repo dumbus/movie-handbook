@@ -26,10 +26,8 @@
     cursor: pointer;
     transition: 0.35s all ease;
 
-    &.active {
-      color: $white;
-      background-color: $primary-dark;
-      outline: 2px solid $primary-dark;
+    &_mobile {
+      display: none;
     }
 
     &:hover {
@@ -41,6 +39,13 @@
       opacity: 0.5;
       outline: 2px solid transparent;
       background-color: $white;
+    }
+
+    &.active {
+      opacity: 1;
+      color: $white;
+      background-color: $primary-dark;
+      outline: 2px solid $primary-dark;
     }
   }
 
@@ -84,20 +89,40 @@
 }
 
 @media (max-width: 575.98px) {
-  .paginator__page_wide {
-    display: none;
-  }
-
-  .paginator__page_tight {
-    display: flex;
-  }
-
   .paginator {
     padding: 0.5rem 0;
 
+    &__limits {
+      display: none;
+    }
+
     &__button {
-      width: 1.8rem;
-      height: 1.8rem;
+      width: 2.5rem;
+      height: 2.5rem;
+
+      &_mobile {
+        display: block;
+      }
     }
   }
 }
+
+// @media (max-width: 399.98px) {
+//   .paginator {
+//     padding: 0.5rem 0;
+
+//     &__limits {
+//       display: none;
+//     }
+
+//     &__button {
+//       &_mobile {
+//         display: block;
+//       }
+
+//       &.secondary {
+//         display: none;
+//       }
+//     }
+//   }
+// }

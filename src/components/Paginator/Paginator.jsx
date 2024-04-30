@@ -5,8 +5,7 @@ import './Paginator.scss';
 import { useGlobalState } from '../../context/GlobalStateContext';
 
 const Paginator = ({ pages }) => {
-  const { pageSettings, setPageSettings, isLoading, setLoading } =
-    useGlobalState();
+  const { pageSettings, setPageSettings, setLoading } = useGlobalState();
   const { page } = pageSettings;
 
   const onPageSwitch = (base, offset = 0) => {
@@ -46,8 +45,9 @@ const Paginator = ({ pages }) => {
       const button = (
         <button
           key={i}
-          className={`paginator__button ${i === page ? 'active' : ''}`}
+          className={`paginator__button ${i === page ? 'active' : 'secondary'}`}
           onClick={() => onPageSwitch(i, 0)}
+          disabled={i === page}
         >
           {i}
         </button>
@@ -64,15 +64,23 @@ const Paginator = ({ pages }) => {
   return (
     <div className="paginator">
       <button
+        className="paginator__button paginator__button_mobile"
+        onClick={() => onPageSwitch(1, 0)}
+        disabled={page <= 1}
+      >
+        {'<<'}
+      </button>
+
+      <button
         className="paginator__button paginator__button_prev"
         onClick={() => onPageSwitch(page, -1)}
-        disabled={isLoading || !pages || page <= 1}
+        disabled={page <= 1}
       >
         {'<'}
       </button>
 
       <div
-        className={`paginator__limits paginator__first ${page <= 3 || pages <= 5 ? 'hidden' : ''}`}
+        className={`paginator__limits ${page <= 3 || pages <= 5 ? 'hidden' : ''}`}
       >
         <button
           className="paginator__button"
@@ -91,7 +99,7 @@ const Paginator = ({ pages }) => {
       {centerButtons}
 
       <div
-        className={`paginator__limits paginator__last ${pages <= 5 || page >= pages - 2 ? 'hidden' : ''}`}
+        className={`paginator__limits ${pages <= 5 || page >= pages - 2 ? 'hidden' : ''}`}
       >
         <div className="paginator__dots">
           <div className="paginator__dots_dot" />
@@ -100,7 +108,7 @@ const Paginator = ({ pages }) => {
         </div>
 
         <button
-          className="paginator__last_button paginator__button"
+          className="paginator__button"
           onClick={() => onPageSwitch(pages, 0)}
         >
           {pages}
@@ -110,9 +118,17 @@ const Paginator = ({ pages }) => {
       <button
         className="paginator__button paginator__button_next"
         onClick={() => onPageSwitch(page, 1)}
-        disabled={isLoading || !pages || page >= pages}
+        disabled={page >= pages}
       >
         {'>'}
+      </button>
+
+      <button
+        className="paginator__button paginator__button_mobile"
+        onClick={() => onPageSwitch(pages, 0)}
+        disabled={page >= pages}
+      >
+        {'>>'}
       </button>
     </div>
   );

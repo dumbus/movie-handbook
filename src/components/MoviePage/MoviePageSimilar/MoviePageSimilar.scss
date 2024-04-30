@@ -37,9 +37,28 @@
   }
 
   &_poster {
-    max-width: 100%;
+    position: relative;
     border-radius: 1rem;
     transition: 0.5s opacity;
+    overflow: hidden;
+
+    &-wrapper {
+      width: 100%;
+      padding-top: 150%; // 3:2 aspect ratio
+    }
+
+    &-placeholder {
+      animation: placeholder 2s ease-in-out infinite;
+    }
+
+    &-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   &_rating {
@@ -53,17 +72,10 @@
   }
 
   &_name {
+    padding-top: 0.5rem;
     overflow-wrap: anywhere;
     font-weight: 700;
     transition: 0.5s color;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .movie-page__similar {
-    &_list {
-      gap: 0 0.5rem;
-    }
   }
 }
 
@@ -71,6 +83,7 @@
   .movie-page__similar {
     &_list {
       grid-template-columns: repeat(3, 1fr);
+      gap: 0 0.5rem;
     }
 
     &_rating {
