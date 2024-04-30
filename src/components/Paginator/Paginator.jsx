@@ -46,7 +46,7 @@ const Paginator = ({ pages }) => {
       const button = (
         <button
           key={i}
-          className={`paginator__button ${i === page ? 'active' : ''}`}
+          className={`paginator__button ${i === page ? 'active' : 'secondary'}`}
           onClick={() => onPageSwitch(i, 0)}
         >
           {i}
