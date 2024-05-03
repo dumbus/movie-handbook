@@ -20,7 +20,6 @@ const Paginator = ({ pages }) => {
     }));
   };
 
-  // eslint-disable-next-line
   const renderCenterButtons = (page, pages) => {
     const buttons = [];
 
