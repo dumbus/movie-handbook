@@ -12,6 +12,7 @@ export const GlobalStateProvider = ({ children }) => {
   });
 
   const [isLoading, setLoading] = useState(true);
+  const [hasError, setError] = useState(false);
 
   const resetPageSettings = () => {
     setLoading(true);
@@ -35,7 +36,9 @@ export const GlobalStateProvider = ({ children }) => {
         pageSettings,
         setPageSettings,
         isLoading,
-        setLoading
+        setLoading,
+        hasError,
+        setError
       }}
     >
       {children}
