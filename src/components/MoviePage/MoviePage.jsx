@@ -18,12 +18,12 @@ import MoviePageRating from './MoviePageRating/MoviePageRating';
 import MoviePageSimilar from './MoviePageSimilar/MoviePageSimilar';
 
 const MoviePage = () => {
-  const { isLoading, setLoading } = useGlobalState();
+  const { isLoading, setLoading, hasError, setError } = useGlobalState();
   const { baseId } = useParams();
 
   const [id, setId] = useState(baseId);
   const [movieData, setMovieData] = useState([]);
-  const [hasError, setError] = useState(false);
+  // const [hasError, setError] = useState(false);
   const location = useLocation();
 
   const movieService = new MovieService();
