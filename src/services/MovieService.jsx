@@ -21,7 +21,7 @@ class MovieService {
 
   getMovies = async (page = 1) => {
     const raw = await this.getResource(
-      `${this._apiBaseUrl}movie?page=${page}&limit=12&type=movie`
+      `${this._apiBaseUrl}movie?page=${page}&limit=12&sortField=votes.kp&sortType=-1&type=movie`
     );
 
     return {
