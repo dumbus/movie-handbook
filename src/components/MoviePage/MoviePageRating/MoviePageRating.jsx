@@ -3,9 +3,9 @@ import React from 'react';
 import './MoviePageRating.scss';
 
 const MoviePageRating = ({ movieData }) => {
-  const renderRatingList = (movieData) => {
-    const { rating } = movieData;
+  const { rating, votes } = movieData;
 
+  const renderRatingList = () => {
     const ratingListItems = [];
 
     const numberOfFullStars = Math.floor(Number(rating));
@@ -48,7 +48,7 @@ const MoviePageRating = ({ movieData }) => {
       <h3 className="movie-page__rating_title title">Рейтинг фильма</h3>
 
       {ratingList}
-      <div className="movie-page__rating_reviews">2 054 735 оценок</div>
+      <div className="movie-page__rating_reviews">{`${votes} оценок`}</div>
     </div>
   );
 };

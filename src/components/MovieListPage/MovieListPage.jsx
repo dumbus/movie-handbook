@@ -22,7 +22,6 @@ const MovieListPage = () => {
   const { listType, page, searchQuery } = pageSettings;
 
   const [movieList, setMovieList] = useState([]);
-  // const [hasError, setError] = useState(false);
   const [pages, setPages] = useState(null);
 
   const movieService = new MovieService();

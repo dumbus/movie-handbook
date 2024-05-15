@@ -147,6 +147,7 @@ class MovieService {
         ? movie.countries.map((obj) => obj.name).join(', ')
         : 'страна неизвестна',
       rating: movie.rating && movie.rating.kp ? movie.rating.kp.toFixed(1) : 0,
+      votes: movie.votes && movie.votes.kp ? movie.votes.kp : 0,
       slogan: movie.slogan || '-',
       budget: this._getBudget(movie),
       fees: this._getFees(movie),
