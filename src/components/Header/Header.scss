@@ -19,13 +19,25 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.7rem;
+    height: 36px;
     padding: 0.3rem 0.5rem;
     outline: 2px solid $white;
     border-radius: 0.2rem;
     transition: 0.3s all ease;
 
-    svg {
+    &_img {
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+
+    &_svg {
+      position: absolute;
       transition: 0.3s all ease;
+    }
+
+    &_active {
+      opacity: 0;
     }
 
     &_line {
@@ -44,13 +56,16 @@
     }
 
     &:hover {
-      transform: scale(1.1);
       outline: 2px solid $black;
       cursor: pointer;
 
       .header__logo {
-        &_svg {
-          stroke: $black;
+        &_default {
+          opacity: 0;
+        }
+
+        &_active {
+          opacity: 1;
         }
 
         &_line {
@@ -65,30 +80,50 @@
   }
 
   &__nav {
-    &_link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &_button {
+      height: 36px;
+      width: 36px;
       position: relative;
-      text-decoration: none;
-      color: $white;
+      border: none;
+      background-color: transparent;
+      outline: 2px solid $white;
+      border-radius: 0.2rem;
+      transition: 0.3s all ease;
       cursor: pointer;
 
-      &::before {
-        content: '';
-        width: 2rem;
-        height: 0.2rem;
-        background-color: $black;
-        border-radius: 0.5rem;
-        position: absolute;
-        bottom: -0.5rem;
-        opacity: 0;
-        transform: translateX(-1.5rem);
-        transition: all 0.3s ease;
-      }
+      &:hover {
+        outline: 2px solid $black;
 
-      &:hover::before {
-        width: 100%;
-        transform: translateX(0);
-        opacity: 1;
+        .header__nav {
+          &_default {
+            opacity: 0;
+          }
+
+          &_active {
+            opacity: 1;
+          }
+        }
       }
+    }
+
+    &_img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.3s all ease;
+    }
+
+    &_active {
+      opacity: 0;
+    }
+
+    &_link {
+      height: 36px;
     }
   }
 }

@@ -10,7 +10,6 @@ import { useGlobalState } from '../../context/GlobalStateContext';
 
 import MovieService from '../../services/MovieService';
 
-import MovieListSearch from './MovieListSearch/MovieListSearch';
 import Paginator from '../Paginator/Paginator';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
@@ -152,7 +151,6 @@ const MovieListPage = () => {
         {listTitle}
         <h3 className="movie-list__subtitle title">{`Текущая страница: ${page}`}</h3>
 
-        <MovieListSearch />
         {spinner}
         {error}
         {content}

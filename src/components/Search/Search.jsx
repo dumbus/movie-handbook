@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import './MovieListSearch.scss';
+import './Search.scss';
 
-import { useGlobalState } from '../../../context/GlobalStateContext';
+import { useGlobalState } from '../../context/GlobalStateContext';
 
-const MovieListSearch = () => {
+const Search = () => {
   const { pageSettings, setPageSettings, setLoading } = useGlobalState();
   const { searchQuery } = pageSettings;
 
@@ -51,30 +51,26 @@ const MovieListSearch = () => {
   };
 
   return (
-    <div className="movie-list__search block">
-      <h4 className="movie-list__search_title title">Поиск по названию:</h4>
-
-      <div className="movie-list__search_settings">
-        <form className="movie-list__search_form" onSubmit={handleSubmit}>
-          <label
-            className={`movie-list__search_label ${showAlert ? '' : 'hidden'}`}
-            htmlFor="searchName"
-          >
-            Минимальная длина - 1 символ
-          </label>
-          <input
-            id="searchName"
-            className="movie-list__search_input"
-            name="searchName"
-            type="text"
-            placeholder="Название фильма"
-            onChange={handleChange}
-            value={searchName}
-          />
-        </form>
-      </div>
+    <div className="search">
+      <form className="search_form" onSubmit={handleSubmit}>
+        <label
+          className={`search_label ${showAlert ? '' : 'hidden'}`}
+          htmlFor="searchName"
+        >
+          Минимальная длина - 1 символ
+        </label>
+        <input
+          id="searchName"
+          className="search_input"
+          name="searchName"
+          type="text"
+          placeholder="Название фильма"
+          onChange={handleChange}
+          value={searchName}
+        />
+      </form>
     </div>
   );
 };
 
-export default MovieListSearch;
+export default Search;
