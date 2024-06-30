@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import './MovieList.scss';
+
 import posterTemplate from '../../../assets/poster.webp';
 
 import Paginator from '../../Paginator/Paginator';

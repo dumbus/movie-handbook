@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './MovieListTitle.scss';
+
 import { getSearchQuery } from '../../../utils/getSearchQuery';
 
 const MovieListTitle = ({ page, listType }) => {
