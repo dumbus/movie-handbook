@@ -3,18 +3,18 @@ import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
-import random from '../../assets/icons/random.svg';
-import randomActive from '../../assets/icons/random-active.svg';
-import popular from '../../assets/icons/popular.svg';
-import popularActive from '../../assets/icons/popular-active.svg';
-import best from '../../assets/icons/best.svg';
-import bestActive from '../../assets/icons/best-active.svg';
-import newest from '../../assets/icons/newest.svg';
-import newestActive from '../../assets/icons/newest-active.svg';
-import home from '../../assets/icons/home.svg';
-import homeActive from '../../assets/icons/home-active.svg';
-import tv from '../../assets/icons/tv.svg';
-import tvActive from '../../assets/icons/tv-active.svg';
+import random from '../../assets/icons/header/random.svg';
+import randomActive from '../../assets/icons/header/random-active.svg';
+import popular from '../../assets/icons/header/popular.svg';
+import popularActive from '../../assets/icons/header/popular-active.svg';
+import best from '../../assets/icons/header/best.svg';
+import bestActive from '../../assets/icons/header/best-active.svg';
+import newest from '../../assets/icons/header/newest.svg';
+import newestActive from '../../assets/icons/header/newest-active.svg';
+import home from '../../assets/icons/header/home.svg';
+import homeActive from '../../assets/icons/header/home-active.svg';
+import tv from '../../assets/icons/header/tv.svg';
+import tvActive from '../../assets/icons/header/tv-active.svg';
 
 import MovieListSearch from '../Search/Search';
 
