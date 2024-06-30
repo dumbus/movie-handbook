@@ -16,9 +16,12 @@ const App = () => {
         <div className="app">
           <Header />
           <Routes>
-            <Route path="/" element={<MovieListPage />} />
-            <Route exact path="/movies" element={<MovieListPage />} />
-            <Route exact path="/movies/:baseId" element={<MoviePage />} />
+            <Route
+              exact
+              path="/movies/:listType/:page"
+              element={<MovieListPage />}
+            />
+            <Route exact path="/movie/:baseId" element={<MoviePage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Footer />

@@ -1,23 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './Paginator.scss';
 
-import { useGlobalState } from '../../context/GlobalStateContext';
-
-const Paginator = ({ pages }) => {
-  const { pageSettings, setPageSettings, setLoading } = useGlobalState();
-  const { page } = pageSettings;
+const Paginator = ({ page, pages, listType }) => {
+  const navigate = useNavigate();
 
   const onPageSwitch = (base, offset = 0) => {
-    window.scrollTo(0, 0);
-    setLoading(true);
+    const newPage = base + offset;
 
-    sessionStorage.setItem('pagination-page', base + offset);
-
-    setPageSettings((prevPageSettings) => ({
-      ...prevPageSettings,
-      page: base + offset
-    }));
+    navigate(`/movies/${listType}/${newPage}`);
   };
 
   const renderCenterButtons = (page, pages) => {

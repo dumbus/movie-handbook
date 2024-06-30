@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './Search.scss';
 
-import { useGlobalState } from '../../context/GlobalStateContext';
-
 const Search = () => {
-  const { pageSettings, setPageSettings, setLoading } = useGlobalState();
-  const { searchQuery } = pageSettings;
+  const navigate = useNavigate();
 
   const [showAlert, setShowAlert] = useState(false);
-  const [searchName, setSearchName] = useState(
-    sessionStorage.getItem('search-name') || ''
-  );
-
-  useEffect(() => {
-    setSearchName(searchQuery);
-  }, [searchQuery]);
+  const [searchName, setSearchName] = useState('');
 
   useEffect(() => {
     setShowAlert(false);
-  }, [pageSettings]);
+  }, []);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -33,20 +25,7 @@ const Search = () => {
       setShowAlert(true);
     } else {
       setShowAlert(false);
-      window.scrollTo(0, 0);
-      setLoading(true);
-
-      sessionStorage.setItem('list-type', 'search');
-      sessionStorage.setItem('pagination-page', 1);
-      sessionStorage.setItem('search-query', searchName);
-      sessionStorage.setItem('search-name', searchName);
-
-      setPageSettings((prevPageSettings) => ({
-        ...prevPageSettings,
-        listType: 'search',
-        page: 1,
-        searchQuery: searchName
-      }));
+      navigate(`/movies/search=${searchName}/1`);
     }
   };
 

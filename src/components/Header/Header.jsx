@@ -5,8 +5,12 @@ import './Header.scss';
 
 import random from '../../assets/icons/random.svg';
 import randomActive from '../../assets/icons/random-active.svg';
-import cup from '../../assets/icons/cup.svg';
-import cupActive from '../../assets/icons/cup-active.svg';
+import popular from '../../assets/icons/popular.svg';
+import popularActive from '../../assets/icons/popular-active.svg';
+import best from '../../assets/icons/best.svg';
+import bestActive from '../../assets/icons/best-active.svg';
+import newest from '../../assets/icons/newest.svg';
+import newestActive from '../../assets/icons/newest-active.svg';
 import home from '../../assets/icons/home.svg';
 import homeActive from '../../assets/icons/home-active.svg';
 import tv from '../../assets/icons/tv.svg';
@@ -14,15 +18,11 @@ import tvActive from '../../assets/icons/tv-active.svg';
 
 import MovieListSearch from '../Search/Search';
 
-import { useGlobalState } from '../../context/GlobalStateContext';
-
 const Header = () => {
-  const { resetPageSettings } = useGlobalState();
-
   return (
     <header className="header">
       <div className="header__container container">
-        <Link to="/" onClick={resetPageSettings}>
+        <Link to="/">
           <div className="header__logo">
             <div className="header__logo_img">
               <img
@@ -45,7 +45,7 @@ const Header = () => {
         <MovieListSearch />
 
         <nav className="header__nav">
-          <Link className="header__nav_link" to="/" onClick={resetPageSettings}>
+          <Link className="header__nav_link" to="/">
             <button className="header__nav_button">
               <img
                 className="header__nav_img header__nav_default"
@@ -60,22 +60,52 @@ const Header = () => {
             </button>
           </Link>
 
-          <Link className="header__nav_link" to="/" onClick={resetPageSettings}>
+          <Link className="header__nav_link" to="/movies/popular/1">
             <button className="header__nav_button">
               <img
                 className="header__nav_img header__nav_default"
-                src={cup}
-                alt="random"
+                src={popular}
+                alt="popular"
               />
               <img
                 className="header__nav_img header__nav_active"
-                src={cupActive}
-                alt="random"
+                src={popularActive}
+                alt="popular"
               />
             </button>
           </Link>
 
-          <Link className="header__nav_link" to="/" onClick={resetPageSettings}>
+          <Link className="header__nav_link" to="/movies/best/1">
+            <button className="header__nav_button">
+              <img
+                className="header__nav_img header__nav_default"
+                src={best}
+                alt="best"
+              />
+              <img
+                className="header__nav_img header__nav_active"
+                src={bestActive}
+                alt="best"
+              />
+            </button>
+          </Link>
+
+          <Link className="header__nav_link" to="/movies/newest/1">
+            <button className="header__nav_button">
+              <img
+                className="header__nav_img header__nav_default"
+                src={newest}
+                alt="newest"
+              />
+              <img
+                className="header__nav_img header__nav_active"
+                src={newestActive}
+                alt="newest"
+              />
+            </button>
+          </Link>
+
+          <Link className="header__nav_link" to="/">
             <button className="header__nav_button">
               <img
                 className="header__nav_img header__nav_default"
