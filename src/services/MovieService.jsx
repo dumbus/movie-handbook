@@ -36,7 +36,7 @@ class MovieService {
     }
 
     const raw = await this.getResource(
-      `${this._apiBaseUrl}movie?page=${page}&limit=12&sortField=${sortField}&sortType=-1&type=movie`
+      `${this._apiBaseUrl}movie?page=${page}&limit=12&sortField=${sortField}&sortType=-1&type=movie&rating.kp=1-10`
     );
 
     return {

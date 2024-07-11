@@ -44,10 +44,8 @@ const MovieList = ({ movieList, page, pages, listType }) => {
 
   return (
     <>
-      <ul className="movie-list__list">
-        {list.length ? list : <ErrorNotFound />}
-      </ul>
-
+      <ul className="movie-list__list">{list.length ? list : null}</ul>
+      {!list.length ? <ErrorNotFound /> : null}
       <Paginator page={page} pages={pages} listType={listType} />
     </>
   );
