@@ -15,20 +15,24 @@ import MoviePagePoster from './MoviePagePoster/MoviePagePoster';
 import MoviePageRating from './MoviePageRating/MoviePageRating';
 import MoviePageSimilar from './MoviePageSimilar/MoviePageSimilar';
 
-const MoviePage = () => {
+const MoviePage = ({ preparedData }) => {
   const [isLoading, setLoading] = useState(true);
   const [hasError, setError] = useState(false);
   const { baseId } = useParams();
 
-  const [movieData, setMovieData] = useState([]);
+  const [movieData, setMovieData] = useState(preparedData || {});
 
   const movieService = new MovieService();
 
   useEffect(() => {
-    setLoading(true);
+    const hasData = Object.keys(movieData).length;
 
-    window.scrollTo(0, 0);
-    onRequest(baseId);
+    if (!hasData) {
+      setLoading(true);
+
+      window.scrollTo(0, 0);
+      onRequest(baseId);
+    }
   }, [baseId]);
 
   const onRequest = (id) => {

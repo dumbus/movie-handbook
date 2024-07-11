@@ -45,7 +45,7 @@ const Header = () => {
         <MovieListSearch />
 
         <nav className="header__nav">
-          <Link className="header__nav_link" to="/">
+          <Link className="header__nav_link" to="/random">
             <button className="header__nav_button">
               <img
                 className="header__nav_img header__nav_default"

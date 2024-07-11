@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MovieListPage from './components/MovieListPage/MovieListPage';
 import MoviePage from './components/MoviePage/MoviePage';
+import RandomPage from './components/RandomPage/RandomPage';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
             element={<MovieListPage />}
           />
           <Route exact path="/movie/:baseId" element={<MoviePage />} />
+          <Route exact path="/random" element={<RandomPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Footer />

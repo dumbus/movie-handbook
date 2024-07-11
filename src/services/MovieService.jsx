@@ -51,6 +51,14 @@ class MovieService {
     return this._transformMovieFull(raw);
   };
 
+  getRandomMovieId = async () => {
+    const raw = await this.getResource(
+      `${this._apiBaseUrl}movie/random?notNullFields=id&type=movie`
+    );
+
+    return raw.id;
+  };
+
   getMoviesByName = async (name, page = 1) => {
     const raw = await this.getResource(
       `${this._apiBaseUrl}movie/search?page=${page}&limit=12&query=${name}`
