@@ -9,9 +9,35 @@
 
   &__container {
     display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  &__wrapper {
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0;
+  }
+
+  &__mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &_active {
+      padding: 1.5rem 0 2px 0;
+      max-height: 120px;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    gap: 1.5rem;
   }
 
   &__logo {
@@ -33,6 +59,7 @@
 
     &_svg {
       position: absolute;
+      left: 0;
       transition: 0.3s all ease;
     }
 
@@ -79,58 +106,74 @@
     }
   }
 
-  &__nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  &__button {
+    position: relative;
+    height: 36px;
+    width: 36px;
+    padding: 6px;
+    border: none;
+    background-color: transparent;
+    outline: 2px solid $white;
+    border-radius: 0.2rem;
+    display: none;
 
-    &_button {
-      height: 36px;
-      width: 36px;
-      position: relative;
-      border: none;
-      background-color: transparent;
-      outline: 2px solid $white;
-      border-radius: 0.2rem;
-      transition: 0.3s all ease;
-      cursor: pointer;
-
-      &:hover {
-        outline: 2px solid $black;
-
-        .header__nav {
-          &_default {
-            opacity: 0;
-          }
-
-          &_active {
-            opacity: 1;
-          }
-        }
-      }
+    &_item {
+      position: absolute;
+      width: calc(100% - 12px);
+      height: 2px;
+      background-color: $white;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
     }
 
-    &_img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: 0.3s all ease;
+    &_item:nth-child(1) {
+      top: 8px;
+    }
+    &_item:nth-child(2) {
+      top: 16px;
+    }
+    &_item:nth-child(3) {
+      top: 24px;
     }
 
     &_active {
-      opacity: 0;
-    }
-
-    &_link {
-      height: 36px;
+      .header__button_item:nth-child(1) {
+        transform: rotate(45deg);
+        top: 16px;
+      }
+      .header__button_item:nth-child(2) {
+        opacity: 0;
+      }
+      .header__button_item:nth-child(3) {
+        transform: rotate(-45deg);
+        top: 16px;
+      }
     }
   }
 }
 
+@media (max-width: 991.98px) {
+  .header__menu {
+    gap: 0.8rem;
+  }
+}
+
 @media (max-width: 767.98px) {
-  .movie-page__header {
+  .header {
     text-align: center;
+
+    &__menu {
+      display: none;
+    }
+
+    &__button {
+      display: block;
+    }
+
+    &__mobile {
+      display: flex;
+    }
   }
 }
 
