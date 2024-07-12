@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import './MoviePage.scss';
-
-import { useGlobalState } from '../../context/GlobalStateContext';
 
 import MovieService from '../../services/MovieService';
 
@@ -17,30 +15,25 @@ import MoviePagePoster from './MoviePagePoster/MoviePagePoster';
 import MoviePageRating from './MoviePageRating/MoviePageRating';
 import MoviePageSimilar from './MoviePageSimilar/MoviePageSimilar';
 
-const MoviePage = () => {
-  const { isLoading, setLoading, hasError, setError } = useGlobalState();
+const MoviePage = ({ preparedData }) => {
+  const [isLoading, setLoading] = useState(true);
+  const [hasError, setError] = useState(false);
   const { baseId } = useParams();
 
-  const [id, setId] = useState(baseId);
-  const [movieData, setMovieData] = useState([]);
-  // const [hasError, setError] = useState(false);
-  const location = useLocation();
+  const [movieData, setMovieData] = useState(preparedData || {});
 
   const movieService = new MovieService();
 
   useEffect(() => {
-    setLoading(true);
+    const hasData = Object.keys(movieData).length;
 
-    window.scrollTo(0, 0);
-    onRequest(id);
-  }, [id]);
+    if (!hasData) {
+      setLoading(true);
 
-  useEffect(() => {
-    const pathParts = location.pathname.split('/');
-    const movieId = parseInt(pathParts[pathParts.length - 1]);
-
-    setId(movieId);
-  }, [location.pathname]);
+      window.scrollTo(0, 0);
+      onRequest(baseId);
+    }
+  }, [baseId]);
 
   const onRequest = (id) => {
     movieService.getMovieById(id).then(onMovieDataLoaded).catch(onError);
@@ -72,7 +65,7 @@ const MoviePage = () => {
         </div>
 
         <div className="movie-page__grid_long">
-          <MoviePageSimilar movieData={movieData} id={id} setId={setId} />
+          <MoviePageSimilar movieData={movieData} />
         </div>
       </div>
     );

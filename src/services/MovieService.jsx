@@ -1,6 +1,7 @@
 class MovieService {
   _apiBaseUrl = 'https://api.kinopoisk.dev/v1.4/';
   _apiKey = 'MP5T443-ZJD42TS-N2AJV65-DXPK135';
+  // _apiKey = 'AFN4TNJ-0V8MG0X-NSE5PMR-TWG4PNY';
   _fetchOptions = {
     method: 'GET',
     headers: {
@@ -19,9 +20,23 @@ class MovieService {
     return await response.json();
   };
 
-  getMovies = async (page = 1) => {
+  getMovies = async (page = 1, listType = 'popular') => {
+    let sortField = 'popular';
+
+    switch (listType) {
+      case 'popular':
+        sortField = 'votes.kp';
+        break;
+      case 'best':
+        sortField = 'rating.kp';
+        break;
+      case 'newest':
+        sortField = 'year';
+        break;
+    }
+
     const raw = await this.getResource(
-      `${this._apiBaseUrl}movie?page=${page}&limit=12&sortField=votes.kp&sortType=-1&type=movie`
+      `${this._apiBaseUrl}movie?page=${page}&limit=12&sortField=${sortField}&sortType=-1&type=movie&rating.kp=1-10`
     );
 
     return {
@@ -34,6 +49,14 @@ class MovieService {
     const raw = await this.getResource(`${this._apiBaseUrl}movie/${id}`);
 
     return this._transformMovieFull(raw);
+  };
+
+  getRandomMovieId = async () => {
+    const raw = await this.getResource(
+      `${this._apiBaseUrl}movie/random?notNullFields=id&type=movie`
+    );
+
+    return raw.id;
   };
 
   getMoviesByName = async (name, page = 1) => {
