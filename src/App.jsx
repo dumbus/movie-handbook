@@ -22,6 +22,7 @@ const App = () => {
           />
           <Route exact path="/movie/:baseId" element={<MoviePage />} />
           <Route exact path="/random" element={<RandomPage />} />
+          <Route exact path="/movies-handbook" element={<MainPage />} />
           <Route exact path="/movies" element={<MainPage />} />
           <Route exact path="/" element={<MainPage />} />
           <Route path="*" element={<NotFoundPage />} />
