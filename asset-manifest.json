@@ -1,19 +1,33 @@
 {
   "files": {
-    "main.css": "/movies-handbook/static/css/main.ec698463.css",
-    "main.js": "/movies-handbook/static/js/main.fb5ddaed.js",
+    "main.css": "/movies-handbook/static/css/main.8603edf7.css",
+    "main.js": "/movies-handbook/static/js/main.9a399f97.js",
     "static/media/spinner.svg": "/movies-handbook/static/media/spinner.797541424edf55a7c9c11dd8aca74016.svg",
+    "static/media/best-active.svg": "/movies-handbook/static/media/best-active.e422b5ee0edc323b4227fdb61e8ba737.svg",
+    "static/media/best.svg": "/movies-handbook/static/media/best.deceac45d95e5e144c2e58149d071964.svg",
+    "static/media/popular-active.svg": "/movies-handbook/static/media/popular-active.13e223d43dd56c6ddd28514a29093055.svg",
+    "static/media/popular.svg": "/movies-handbook/static/media/popular.93fe9e68f1f7f1f19d1cc7dea2bc2176.svg",
+    "static/media/newest-active.svg": "/movies-handbook/static/media/newest-active.d2c4d9f15f4d0919a005c7d28de11b4c.svg",
+    "static/media/newest.svg": "/movies-handbook/static/media/newest.eff989ca3d21cda42a8b55a060b45514.svg",
     "static/media/error.svg": "/movies-handbook/static/media/error.42cc7ae3ce6177ca78b7ba696f7efd26.svg",
     "static/media/poster.webp": "/movies-handbook/static/media/poster.32139a6d044f31d15728.webp",
+    "static/media/home-active.svg": "/movies-handbook/static/media/home-active.35ab7256531d9ca4e542295c2033aecb.svg",
+    "static/media/home.svg": "/movies-handbook/static/media/home.ef0d9bca80b8cb70c52575425410653e.svg",
     "static/media/not-found.svg": "/movies-handbook/static/media/not-found.06259324243fa8690934fc223d3687f2.svg",
+    "static/media/random-active.svg": "/movies-handbook/static/media/random-active.121c919106ec19eba7a91c2133fdea7f.svg",
+    "static/media/random.svg": "/movies-handbook/static/media/random.d411c5e6dd4f66a1a425f3078523b038.svg",
+    "static/media/search.svg": "/movies-handbook/static/media/search.6fad5293f2f9f941fd3d748972b3a592.svg",
     "index.html": "/movies-handbook/index.html",
+    "static/media/main.svg": "/movies-handbook/static/media/main.3227220ffd04b09ccb7d7de0de4f3a36.svg",
+    "static/media/tv-active.svg": "/movies-handbook/static/media/tv-active.46f9eee975e1c076f274eeb03e7bf077.svg",
+    "static/media/tv.svg": "/movies-handbook/static/media/tv.9cb25a9788c8376ccc88cb9e4053ebf7.svg",
     "static/media/star-empty.svg": "/movies-handbook/static/media/star-empty.0b80cb83357e8835af80.svg",
     "static/media/star-filled.svg": "/movies-handbook/static/media/star-filled.3a48f4947f7df8500e4c.svg",
-    "main.ec698463.css.map": "/movies-handbook/static/css/main.ec698463.css.map",
-    "main.fb5ddaed.js.map": "/movies-handbook/static/js/main.fb5ddaed.js.map"
+    "main.8603edf7.css.map": "/movies-handbook/static/css/main.8603edf7.css.map",
+    "main.9a399f97.js.map": "/movies-handbook/static/js/main.9a399f97.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec698463.css",
-    "static/js/main.fb5ddaed.js"
+    "static/css/main.8603edf7.css",
+    "static/js/main.9a399f97.js"
   ]
 }
