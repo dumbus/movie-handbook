@@ -12,7 +12,7 @@ const MovieList = ({ movieList, page, pages, listType }) => {
   const list = movieList.map((itemData) => {
     const { id, name, year, posterUrl, countries, rating } = itemData;
 
-    if (!id) return;
+    if (!id) return null;
 
     return (
       <Link to={`/movie/${id}`} key={id}>
@@ -42,11 +42,22 @@ const MovieList = ({ movieList, page, pages, listType }) => {
     );
   });
 
+  const hasMovies = list.length > 0;
+
   return (
     <>
-      <ul className="movie-list__list">{list.length ? list : null}</ul>
-      {!list.length ? <ErrorNotFound /> : null}
-      <Paginator page={page} pages={pages} listType={listType} />
+      {hasMovies ? (
+        <>
+          <ul className="movie-list__list">{list}</ul>
+          <Paginator
+            page={Number(page)}
+            pages={Number(pages)}
+            listType={listType}
+          />
+        </>
+      ) : (
+        <ErrorNotFound />
+      )}
     </>
   );
 };
