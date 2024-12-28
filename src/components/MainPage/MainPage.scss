@@ -3,6 +3,10 @@
 .main-page {
   flex-direction: column;
 
+  &__content {
+    z-index: 5;
+  }
+
   &__header {
     width: 100%;
     display: flex;
