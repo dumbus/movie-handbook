@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'import'],
   rules: {
     'react/prop-types': 'off',
     'prettier/prettier': [
@@ -20,7 +20,38 @@ module.exports = {
       {
         endOfLine: 'auto'
       }
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index'
+        ],
+        alphabetize: {
+          order: 'asc'
+        },
+        pathGroups: [
+          {
+            pattern: './**/*.scss',
+            group: 'sibling',
+            position: 'after'
+          }
+        ]
+      }
     ]
   },
-  ignorePatterns: ['.eslintrc.js']
+  ignorePatterns: ['.eslintrc.js', 'config-overrides.js'],
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [['~', './src']],
+        extensions: ['.js', '.jsx']
+      }
+    }
+  }
 };

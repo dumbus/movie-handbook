@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import notFound from '~/assets/icons/not-found.svg';
 
-import notFound from '../../assets/icons/not-found.svg';
+import ErrorMessage from '~/components/ErrorMessage';
 
 const ErrorNotFound = () => {
   const errorContent = (

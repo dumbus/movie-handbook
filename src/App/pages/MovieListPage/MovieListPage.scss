@@ -1,0 +1,9 @@
+@import 'styles/variables';
+
+.movie-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+}
