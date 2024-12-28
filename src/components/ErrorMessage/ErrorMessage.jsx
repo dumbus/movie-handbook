@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ErrorMessage.scss';
 
-import error from '../../assets/icons/error.svg';
+import error from '~/assets/icons/error.svg';
 
 const ErrorMessage = ({ content }) => {
   const defaultContent = (
