@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/movies-handbook/static/css/main.8603edf7.css",
-    "main.js": "/movies-handbook/static/js/main.9a399f97.js",
+    "main.css": "/movies-handbook/static/css/main.72751e49.css",
+    "main.js": "/movies-handbook/static/js/main.c66e3725.js",
     "static/media/spinner.svg": "/movies-handbook/static/media/spinner.797541424edf55a7c9c11dd8aca74016.svg",
     "static/media/best-active.svg": "/movies-handbook/static/media/best-active.e422b5ee0edc323b4227fdb61e8ba737.svg",
     "static/media/best.svg": "/movies-handbook/static/media/best.deceac45d95e5e144c2e58149d071964.svg",
@@ -23,11 +23,11 @@
     "static/media/tv.svg": "/movies-handbook/static/media/tv.9cb25a9788c8376ccc88cb9e4053ebf7.svg",
     "static/media/star-empty.svg": "/movies-handbook/static/media/star-empty.0b80cb83357e8835af80.svg",
     "static/media/star-filled.svg": "/movies-handbook/static/media/star-filled.3a48f4947f7df8500e4c.svg",
-    "main.8603edf7.css.map": "/movies-handbook/static/css/main.8603edf7.css.map",
-    "main.9a399f97.js.map": "/movies-handbook/static/js/main.9a399f97.js.map"
+    "main.72751e49.css.map": "/movies-handbook/static/css/main.72751e49.css.map",
+    "main.c66e3725.js.map": "/movies-handbook/static/js/main.c66e3725.js.map"
   },
   "entrypoints": [
-    "static/css/main.8603edf7.css",
-    "static/js/main.9a399f97.js"
+    "static/css/main.72751e49.css",
+    "static/js/main.c66e3725.js"
   ]
 }
